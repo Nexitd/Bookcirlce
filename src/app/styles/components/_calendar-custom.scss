@@ -1,0 +1,106 @@
+.calendar {
+  width: 100%;
+  border: 1px solid $dark-gray;
+  background-color: $white;
+  padding-bottom: 8em;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 3.75em 2.6em 0;
+    margin-bottom: 2em;
+
+    &_title {
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+      letter-spacing: 0.4px;
+    }
+
+    &_btn {
+      cursor: pointer;
+      outline: none;
+      border: none;
+      background-color: transparent;
+    }
+  }
+
+  &__body {
+    &_weeks {
+      display: flex;
+      justify-content: space-between;
+      gap: 2.6em;
+      padding: 0 3em;
+    }
+
+    &_days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-gap: 22px 33px;
+      padding: 0 3em 0 1.875em;
+      margin-top: 1.25em;
+
+      .day {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          font-weight: 400;
+          font-size: 1.25rem;
+          line-height: 1.7rem;
+          color: #000;
+        }
+
+        &-target {
+          padding: 0.3em;
+          border-radius: 50%;
+          background-color: $orange;
+
+          span {
+            color: $white;
+          }
+        }
+
+        &-active {
+          padding: 0.3em;
+          border: 1px solid $orange;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    &_monthes {
+      display: flex;
+      justify-content: space-around;
+      gap: 0 5px;
+      padding: 0 1.4em;
+      margin-bottom: 1.4em;
+
+      li {
+        list-style-type: none;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.4rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__weeks {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    color: $black;
+    text-transform: uppercase;
+    list-style: none;
+  }
+
+  &__month {
+    &-active {
+      font-weight: 700 !important;
+    }
+  }
+}

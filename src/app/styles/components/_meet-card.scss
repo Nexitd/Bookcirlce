@@ -1,0 +1,43 @@
+.meet__card {
+  max-width: 415px;
+  width: 100%;
+  padding: 1.8em;
+  background-color: $white;
+  border: 1px solid $dark-gray;
+  border-radius: 4px;
+
+  display: flex;
+  flex-direction: column;
+
+  &_tag {
+    margin-bottom: 1em;
+
+    svg {
+      fill: #000;
+    }
+  }
+
+  &_title {
+    font-family: 'Noto Sans', sans-serif !important;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.7rem;
+    color: $black;
+
+    margin-bottom: 1em;
+  }
+
+  &_text {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    color: $black;
+  }
+
+  &_btn {
+    margin-top: 3.75em;
+    color: $orange !important;
+    border: 1px solid $orange !important;
+    background-color: transparent !important;
+  }
+}

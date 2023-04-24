@@ -1,0 +1,75 @@
+@import './constants/index.scss';
+@import './components/index.scss';
+@import './pages/index.scss';
+@import 'antd/dist/reset.css';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+}
+
+aside {
+  grid-area: sidebar;
+  position: relative;
+  max-width: 280px;
+  width: 100%;
+}
+
+main {
+  grid-area: main;
+  width: 100%;
+}
+
+.main__flex {
+  display: grid;
+  grid-template-areas: 'sidebar main';
+  grid-template-columns: 280px 1fr;
+
+  &-content {
+    min-height: 80vh;
+    padding: 2em 0 6.25em;
+  }
+}
+
+.wrapper__container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.font-text-noto {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+}
+
+.font-title-noto {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Soyuz Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+p,
+span,
+input,
+a,
+label,
+button,
+li {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+}

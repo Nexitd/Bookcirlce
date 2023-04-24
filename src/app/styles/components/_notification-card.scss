@@ -1,0 +1,79 @@
+.notification {
+  &__card {
+    background-color: $white;
+    border: 1px solid $dark-gray;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 1.8em;
+    margin-bottom: 1.25em;
+
+    &_head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25em;
+    }
+
+    &_body {
+      margin-bottom: 1.25em;
+    }
+
+    &_footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &_title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.7rem;
+      color: $black;
+    }
+
+    &_date {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      text-align: right;
+      color: $black;
+      opacity: 0.5;
+    }
+
+    &_text {
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 1.7rem;
+      color: $black;
+      opacity: 0.8;
+    }
+
+    &_btn {
+      max-width: 106px;
+      color: $orange !important;
+      border: 1px solid $orange !important;
+      background-color: $white !important;
+    }
+
+    &_connect {
+      max-width: 180px;
+      margin-left: 0.6em;
+    }
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    background: $light-orange;
+    border-radius: 10px;
+    padding: 0.25em 0.75em;
+    gap: 6px;
+    margin-bottom: 1.4em;
+
+    &_text {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      color: $black;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.stream {
+  &__message {
+    width: 330px;
+    padding: 1em;
+
+    background: $white;
+    border: 1px solid #cfd4d9;
+    box-shadow: 0px 0px 0px #cbdafc;
+    border-radius: 4px;
+    margin-bottom: 1em;
+
+    &_title {
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      color: $black;
+
+      margin-bottom: 0.3em;
+    }
+
+    &_text {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      color: #222222;
+    }
+  }
+}

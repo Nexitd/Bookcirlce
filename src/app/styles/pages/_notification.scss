@@ -1,0 +1,10 @@
+.notification__container {
+  margin-top: 1.25em;
+
+  &_pagination {
+    width: 100%;
+    margin: 3.75em 0 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

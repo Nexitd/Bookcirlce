@@ -1,0 +1,44 @@
+.collapse {
+  width: 100%;
+  padding: 2em 0;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_item {
+      display: flex;
+      align-items: center;
+    }
+
+    &_title {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1rem;
+      color: $black;
+    }
+
+    img {
+      margin-right: 0.5em;
+    }
+
+    &_btn {
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+    }
+  }
+
+  &__body {
+    transition: height 0.3s ease;
+    overflow: hidden;
+  }
+}
+
+.collapse-active {
+  button {
+    transform: rotate(180deg);
+  }
+}

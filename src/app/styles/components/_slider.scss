@@ -1,0 +1,51 @@
+.slider {
+  &__container {
+    width: 100%;
+    // max-width: 915px;
+    // padding: 0 25px;
+    margin: 0 auto;
+  }
+  &__btn {
+    z-index: 1000000;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 40px;
+    background: $gray;
+    border-radius: 5px;
+    cursor: pointer;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &:first-child {
+      left: 0;
+    }
+
+    &:last-child {
+      right: 0;
+    }
+  }
+}
+
+.ant-carousel {
+  .slick-list {
+    // margin: 30px;
+  }
+}
+
+.slick-slide {
+  .club__card {
+  }
+
+  &:last-of-type {
+    .club__card {
+    }
+  }
+  & > div {
+    width: auto !important;
+  }
+}

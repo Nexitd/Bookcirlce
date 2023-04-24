@@ -1,0 +1,32 @@
+.notification__tags {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 4.4em;
+  border: 1px solid #96999c;
+  border-radius: 4px;
+
+  &_item {
+    cursor: pointer;
+    padding: 0.6em 0.75em;
+    border-right: 1px solid #96999c;
+
+    &:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+
+    &:last-child {
+      border-right: none;
+      border-radius: 0 4px 4px 0;
+    }
+
+    span {
+      font-size: 1.25rem;
+      line-height: 1.7rem;
+      color: $dark-gray;
+    }
+  }
+}
+
+.active {
+  background-color: $gray;
+}

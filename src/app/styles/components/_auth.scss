@@ -1,0 +1,153 @@
+.auth {
+  max-width: 650px;
+  width: 100%;
+
+  background-color: $gray;
+  padding: 3.75em 5.5em;
+
+  &__container {
+    &_accounts {
+      width: 100%;
+      margin-bottom: 1.4em;
+    }
+    &_label {
+      margin-bottom: 1.8em;
+      font-size: 1.25rem;
+      line-height: 1.7rem;
+      color: #212529;
+    }
+
+    &_subtitle {
+      text-align: center;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      color: #212529;
+      margin-bottom: 2em;
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &_title {
+      text-align: center;
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+      letter-spacing: 0.4px;
+      margin-bottom: 1em;
+    }
+
+    span {
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.8rem;
+      line-height: 1rem;
+      color: $orange;
+      text-align: center;
+      margin-top: 0.5em;
+    }
+
+    &_login {
+      margin: 1em auto 0.6em;
+    }
+
+    &_reg {
+      color: $orange !important;
+      background-color: transparent !important;
+      border: 1px solid $orange !important;
+    }
+
+    &_btn {
+      line-height: 48px !important;
+    }
+  }
+
+  &__form {
+    &_item {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.25em;
+
+      label {
+        font-size: 1rem;
+        line-height: 1.4rem;
+        color: #212529;
+        margin-bottom: 0.6em;
+      }
+    }
+
+    &_textblock {
+      width: 100%;
+      margin-bottom: 1.4em;
+
+      input {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 0.6em;
+      }
+    }
+
+    &_label {
+      align-self: flex-start;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      color: #212529;
+      margin-bottom: 1.4em;
+    }
+
+    input {
+      width: 100%;
+      height: 54px;
+      background-color: $white;
+      border: 1px solid #cfd4d9;
+      box-shadow: 0px 0px 0px #cbdafc;
+      border-radius: 4px 0px 0px 4px;
+      padding: 1em;
+      outline: none;
+
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      color: $dark-gray;
+
+      &::placeholder {
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.4rem;
+        color: $dark-gray;
+      }
+    }
+  }
+
+  &__accounts {
+    &_item {
+      width: 100%;
+      display: flex;
+
+      label {
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        line-height: 1.4rem;
+        color: $black;
+        cursor: pointer;
+
+        &:first-of-type {
+          margin-right: 5em;
+        }
+
+        input {
+          margin-right: 0.6em;
+        }
+      }
+    }
+  }
+}
+
+.input__container_item {
+  width: 100%;
+}
