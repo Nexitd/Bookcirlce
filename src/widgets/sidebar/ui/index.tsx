@@ -20,7 +20,7 @@ const Sidebar = () => {
         navigate(link)
 
         if (!link) dispatch(logOut())
-    }, [])
+    }, [navigate, dispatch])
 
     return <div className="sidebar">
         <div className="sidebar__header">
