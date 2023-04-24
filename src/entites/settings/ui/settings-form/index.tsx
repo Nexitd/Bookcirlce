@@ -4,7 +4,7 @@ import moment from 'moment';
 import { useAppDispatch, useAppSelector } from 'shared/api';
 import { Button, Modal } from 'shared/ui';
 import avatar from "assets/images/Ellipse 1.png"
-import { deleteUser, logOut } from 'entites/auth/model';
+import { SettingsFormModal } from '../settings-form-modal/index';
 
 export const SettingsForm = () => {
     const { currentUser } = useAppSelector(state => state.auth);
@@ -143,7 +143,7 @@ export const SettingsForm = () => {
         </Formik>
 
         <Modal isOpen={isModalVisible} onClick={showModal} title={modalType === "password" ? "Изменение пароля" : "Подтвердите действие"}>
-            
+            <SettingsFormModal modalType={modalType} showModal={showModal} />
         </Modal>
     </div>
 }

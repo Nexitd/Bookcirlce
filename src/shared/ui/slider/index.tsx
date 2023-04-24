@@ -1,6 +1,6 @@
 import { Carousel } from "antd";
-import { ReactNode, useRef } from "react";
-
+import React, { ReactNode, RefObject } from "react";
+import { CarouselRef } from "antd/lib/carousel";
 
 
 type CustomSliderPropsType = {
@@ -26,25 +26,26 @@ const RightBtn = ({ onClick }: { onClick: () => void }) => {
 
 
 const CustomSlider = ({ slidesToShow = 2, children }: CustomSliderPropsType) => {
-    const carousel = useRef<any>(null)
+    const carousel: RefObject<CarouselRef> = React.createRef();
 
     const next = () => {
-        carousel.current.next();
+        carousel.current?.next();
     };
 
     const previous = () => {
-        carousel.current.prev();
+        carousel.current?.prev();
     };
 
     return <div className="slider">
         <RightBtn onClick={previous} />
         <div className="slider__container">
-            <Carousel infinite={true}
+            <Carousel
+                infinite={true}
                 ref={carousel}
                 dots={false}
                 slidesToScroll={1}
                 slidesToShow={slidesToShow}
-                arrows={true}>
+            >
                 {children}
             </Carousel>
         </div>

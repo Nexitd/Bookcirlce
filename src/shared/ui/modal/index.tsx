@@ -1,5 +1,4 @@
 import { Dispatch, FC, ReactNode, SetStateAction } from "react";
-import Button from "../button";
 import { createPortal } from "react-dom";
 
 interface IModal {
@@ -14,7 +13,6 @@ const Modal: FC<IModal> = ({ children, onClick = () => { }, title = '', isOpen =
         <>
             {isOpen ? createPortal(
                 <div className="modal__container">
-
                     <div className="modal">
                         <div className="modal__head">
                             <p className="modal__title">{title}</p>
@@ -24,9 +22,7 @@ const Modal: FC<IModal> = ({ children, onClick = () => { }, title = '', isOpen =
                                 </svg>
                             </button>
                         </div>
-
                         {children}
-
                     </div>
                 </div>, document.getElementById("modal") as HTMLElement
             ) : null}

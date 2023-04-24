@@ -30,8 +30,6 @@ const DeleteModal = ({ handleClick, showModal }: DeleteModalModalPropsType) => {
 }
 
 const ChangePasswordModal = () => {
-
-
     return <>
         <div className="modal__body">
             <label className="modal__text">Введите свой текущий пароль</label>

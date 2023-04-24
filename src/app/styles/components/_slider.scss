@@ -1,9 +1,6 @@
 .slider {
   &__container {
-    width: 100%;
-    // max-width: 915px;
-    // padding: 0 25px;
-    margin: 0 auto;
+    // width: 100%;
   }
   &__btn {
     z-index: 1000000;
@@ -28,24 +25,5 @@
     &:last-child {
       right: 0;
     }
-  }
-}
-
-.ant-carousel {
-  .slick-list {
-    // margin: 30px;
-  }
-}
-
-.slick-slide {
-  .club__card {
-  }
-
-  &:last-of-type {
-    .club__card {
-    }
-  }
-  & > div {
-    width: auto !important;
   }
 }
