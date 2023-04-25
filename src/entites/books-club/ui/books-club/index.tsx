@@ -9,7 +9,7 @@ export const BooksClubItem = ({ title }: { title: string }) => {
     const navigate = useNavigate()
 
     const handleClick = useCallback((id: number) => {
-        navigate(`/club/${id}`)
+        navigate(`/book-clubs/${id}`)
     }, [])
 
     return <div className="club__slider_item">

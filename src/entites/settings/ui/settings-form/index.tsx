@@ -1,17 +1,17 @@
 import { useCallback, useState } from 'react';
 import { Field, Form, Formik } from 'formik';
 import moment from 'moment';
-import { useAppDispatch, useAppSelector } from 'shared/api';
+import { useAppSelector } from 'shared/api';
 import { Button, Modal } from 'shared/ui';
-import avatar from "assets/images/Ellipse 1.png"
 import { SettingsFormModal } from '../settings-form-modal/index';
+import avatar from "assets/images/Ellipse 1.png"
 
 export const SettingsForm = () => {
     const { currentUser } = useAppSelector(state => state.auth);
     const [fileName, setFileName] = useState<string>('');
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
     const [modalType, setModalType] = useState<"password" | "delete">("delete")
-    const dispatch = useAppDispatch()
+
 
     const handleSubmit = () => {
 

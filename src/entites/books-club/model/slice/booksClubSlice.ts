@@ -61,6 +61,7 @@ export const booksClubSlice = createSlice({
           BookClubCategoriesTypeDefinition.design,
           BookClubCategoriesTypeDefinition.self_development,
         ],
+        
       },
       {
         id: 2,

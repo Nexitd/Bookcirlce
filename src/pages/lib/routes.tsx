@@ -43,4 +43,16 @@ export const routes = [
         element: lazy(() => import('pages/ui/stream')),
         roles: ['moder', 'member']
     },
+    {
+        id: 8,
+        path: '/book-clubs/:id',
+        element: lazy(() => import('pages/ui/books-club-page')),
+        roles: ['moder', 'member']
+    },
+    {
+        id: 9,
+        path: '/my-clubs/:id',
+        element: lazy(() => import('pages/ui/books-club-page')),
+        roles: ['moder', 'member']
+    },
 ]

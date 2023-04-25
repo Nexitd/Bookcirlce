@@ -6,3 +6,4 @@ export { default as ColorableTag } from './colorable-tag';
 export { default as CustomCalendar } from './calendar';
 export { default as Pagination } from './pagination';
 export { default as Slider } from './slider';
+export { default as Breadcrumbs } from './crumbs';

@@ -12,7 +12,7 @@ export const MyClubsItem = () => {
     const navigate = useNavigate()
 
     const handleClick = useCallback((id: number) => {
-        navigate(`/club/${id}`)
+        navigate(`/my-clubs/${id}`)
     }, [])
 
     const renderedData = useMemo(() => {

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Navigate, Route } from "react-router-dom";
+import { Link, Navigate, Route } from "react-router-dom";
 import { useAppSelector } from "shared/api";
 import { ACCOUNT_TYPE } from "shared/types";
 
