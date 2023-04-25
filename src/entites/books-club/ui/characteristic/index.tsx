@@ -8,8 +8,7 @@ export const BooksCharacteristics = ({ title }: { title: string }) => {
   return (
     <div className="club__slider_item">
       <h2 className="club__subtitle">{title}</h2>
-
-      <SlickSlider slidesToShow={4}>
+      <SlickSlider slidesToShow={6} variableWidth>
         {categories.map((el, index) => {
           return (
             <div className="club__slider_category" key={index}>

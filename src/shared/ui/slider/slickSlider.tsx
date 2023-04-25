@@ -1,8 +1,9 @@
 import Slider from "react-slick";
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 
 type CustomSliderPropsType = {
   slidesToShow?: number;
+  variableWidth?: boolean;
   children: ReactNode;
 };
 
@@ -10,7 +11,7 @@ type TCustomSliderArrows = {
   onClick?: () => void;
 };
 
-const LeftBtn: FC<TCustomSliderArrows> = ({ onClick }) => {
+const LeftBtn = ({ onClick }: TCustomSliderArrows) => {
   return (
     <button className="slider__btn" onClick={onClick}>
       <svg
@@ -31,7 +32,7 @@ const LeftBtn: FC<TCustomSliderArrows> = ({ onClick }) => {
   );
 };
 
-const RightBtn: FC<TCustomSliderArrows> = ({ onClick }) => {
+const RightBtn = ({ onClick }: TCustomSliderArrows) => {
   return (
     <button className="slider__btn" onClick={onClick}>
       <svg
@@ -52,12 +53,16 @@ const RightBtn: FC<TCustomSliderArrows> = ({ onClick }) => {
   );
 };
 
-const SlickSlider = ({ slidesToShow = 2, children }: CustomSliderPropsType) => {
+const SlickSlider = ({
+  slidesToShow = 2,
+  variableWidth = false,
+  children,
+}: CustomSliderPropsType) => {
   return (
     <div className="slider">
       <div className="slider__container">
         <Slider
-          infinite={true}
+          variableWidth={variableWidth}
           slidesToScroll={1}
           slidesToShow={slidesToShow}
           prevArrow={<RightBtn />}

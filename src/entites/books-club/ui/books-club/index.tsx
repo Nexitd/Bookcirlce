@@ -16,7 +16,7 @@ export const BooksClubItem = ({ title }: { title: string }) => {
   return (
     <div className="club__slider_item">
       <h2 className="club__subtitle">{title}</h2>
-      <SlickSlider slidesToShow={3}>
+      <SlickSlider slidesToShow={2}>
         {clubs.map((el) => (
           <ClubCard data={el} key={el.id} onClick={handleClick} />
         ))}
