@@ -1,10 +1,13 @@
 import Slider from "react-slick";
-import { ReactNode } from "react";
+import { ReactNode, useMemo } from "react";
+import { Children, memo } from "react";
+import { dataSlice } from "../lib/group-slice";
 
 type CustomSliderPropsType = {
   slidesToShow?: number;
   variableWidth?: boolean;
   children: ReactNode;
+  isSlice?: boolean;
 };
 
 type TCustomSliderArrows = {
@@ -57,7 +60,12 @@ const SlickSlider = ({
   slidesToShow = 2,
   variableWidth = false,
   children,
+  isSlice = false,
 }: CustomSliderPropsType) => {
+  const childrenArr = Children.toArray(children);
+
+  const resArr = useMemo(() => dataSlice(childrenArr, 3), [childrenArr]);
+
   return (
     <div className="slider">
       <div className="slider__container">
@@ -68,11 +76,11 @@ const SlickSlider = ({
           prevArrow={<RightBtn />}
           nextArrow={<LeftBtn />}
         >
-          {children}
+          {isSlice ? resArr : children}
         </Slider>
       </div>
     </div>
   );
 };
 
-export default SlickSlider;
+export default memo(SlickSlider);

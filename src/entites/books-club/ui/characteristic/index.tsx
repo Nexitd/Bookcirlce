@@ -1,6 +1,5 @@
 import { useAppSelector } from "shared/api";
-import SlickSlider from "shared/ui/slider/slickSlider";
-// import { Slider } from "shared/ui"
+import SlickSlider from "widgets/slider/ui";
 
 export const BooksCharacteristics = ({ title }: { title: string }) => {
   const { categories } = useAppSelector((state) => state.books_club);
