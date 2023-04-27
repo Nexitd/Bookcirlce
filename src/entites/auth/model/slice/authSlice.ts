@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   UserAuthDataType,
   UserFullInfoType,
   UserRegistrationDataType,
-} from 'shared/types';
-import avatar from 'assets/images/Ellipse 1.png';
+} from "shared/types";
+import avatar from "assets/images/Ellipse 1.png";
 
 type initialStateType = {
   users: any[];
@@ -12,61 +12,61 @@ type initialStateType = {
   currentUser: (UserFullInfoType & { password: string }) | any;
   isError: boolean;
   isSuccess: boolean;
-  choosedModel: 'auth' | 'registration' | 'remember';
+  choosedModel: "auth" | "registration" | "remember";
 };
 
 export const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
     users: [
       {
         id: 1,
-        name: 'Иван',
-        surname: 'Иванов',
-        sex: 'мужской',
-        password: '12345',
-        email: 'test@gmail.com',
+        name: "Иван",
+        surname: "Иванов",
+        sex: "мужской",
+        password: "12345",
+        email: "test@gmail.com",
         avatar: avatar,
         birth_date: new Date().toUTCString(),
         role: 1,
       },
       {
         id: 2,
-        name: 'Иван',
-        surname: 'Артемов',
-        sex: 'мужской',
-        password: '123456',
-        email: 'test2@gmail.com',
+        name: "Иван",
+        surname: "Артемов",
+        sex: "мужской",
+        password: "123456",
+        email: "test2@gmail.com",
         birth_date: new Date().toUTCString(),
         role: 2,
       },
       {
         id: 3,
-        name: 'Иван',
-        surname: 'Артемов',
-        sex: 'мужской',
-        password: '123456',
+        name: "Иван",
+        surname: "Артемов",
+        sex: "мужской",
+        password: "123456",
         avatar: avatar,
-        email: 'test2@gmail.com',
+        email: "test2@gmail.com",
         birth_date: new Date().toUTCString(),
         role: 1,
       },
     ],
     currentUser: {
       id: 1,
-      name: 'Иван',
-      surname: 'Иванов',
-      sex: 'мужской',
-      password: '12345',
+      name: "Иван",
+      surname: "Иванов",
+      sex: "мужской",
+      password: "12345",
       avatar: avatar,
-      email: 'test@gmail.com',
+      email: "test@gmail.com",
       birth_date: new Date().toUTCString(),
       role: 1,
     },
     isError: false,
     isSuccess: false,
     isAuth: true,
-    choosedModel: 'auth',
+    choosedModel: "auth",
   } as initialStateType,
   reducers: {
     // регистрация
@@ -117,7 +117,7 @@ export const authSlice = createSlice({
 
     changeUserPassword: (
       state,
-      { payload }: PayloadAction<{ password: string; id: number }>
+      { payload }: PayloadAction<{ password?: string; id: number }>
     ) => {
       state.users = state.users.map((el) => {
         if (el.id === payload.id) {
@@ -136,21 +136,21 @@ export const authSlice = createSlice({
       state.isAuth = false;
       state.isSuccess = false;
       state.isError = false;
-      state.choosedModel = 'auth';
+      state.choosedModel = "auth";
     },
 
     logOut: (state) => {
       state.isAuth = false;
       state.isSuccess = false;
       state.isError = false;
-      state.choosedModel = 'auth';
+      state.choosedModel = "auth";
     },
 
     // переключение типов окон 'вход/регестрация/восстановление пароля'
 
     setModalType: (
       state,
-      { payload }: PayloadAction<'auth' | 'remember' | 'registration'>
+      { payload }: PayloadAction<"auth" | "remember" | "registration">
     ) => {
       console.log(payload);
 
