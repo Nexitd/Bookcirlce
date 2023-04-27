@@ -10,7 +10,7 @@ type TPrivateRoute = {
 const AuthRoute: FC<TPrivateRoute> = ({ element: RouteComponent }) => {
     const { isAuth } = useAppSelector(state => state.auth);
 
-    return !isAuth ? <RouteComponent /> : <Navigate to="/notification" />;
+    return !isAuth ? <RouteComponent /> : <Navigate to="/my-clubs" />;
 };
 
 export default AuthRoute;

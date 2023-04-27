@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Link, Navigate, Route } from "react-router-dom";
+import { Navigate, Route } from "react-router-dom";
 import { useAppSelector } from "shared/api";
 import { ACCOUNT_TYPE } from "shared/types";
 
@@ -22,7 +22,7 @@ const PrivateRoute: FC<TRoute & Pick<CreateRouteType, "roles">> = ({ element: Ro
         } else if (isAuth && roles.includes(ACCOUNT_TYPE[currentUser.role])) {
             return <RouteComponent />
         } else {
-            return <Navigate to="/notification" />
+            return <Navigate to="/my-clubs" />
         }
     }
 

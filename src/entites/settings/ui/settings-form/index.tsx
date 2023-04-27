@@ -4,7 +4,7 @@ import moment from 'moment';
 import { useAppSelector } from 'shared/api';
 import { Button, Modal } from 'shared/ui';
 import { SettingsFormModal } from '../settings-form-modal/index';
-import avatar from "assets/images/Ellipse 1.png"
+
 
 export const SettingsForm = () => {
     const { currentUser } = useAppSelector(state => state.auth);
@@ -26,7 +26,7 @@ export const SettingsForm = () => {
     return <div className="settings__container">
         <h1 className='settings__container_title'>данные аккаунта</h1>
         <div className='settings__container_item'>
-            <img src={avatar} alt="" />
+            <img src={currentUser.avatar} alt="" />
             <span className='settings__container_name'>{currentUser.name} {currentUser.surname}</span>
         </div>
         <Formik initialValues={{

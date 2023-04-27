@@ -1,16 +1,25 @@
+import { memo, useEffect, useRef } from "react";
 import { useAppSelector } from "shared/api"
 import { StreamMessage } from "../stream-message"
 
-export const StreamMessagesRow = () => {
-    const { messages } = useAppSelector(state => state.stream)
+export const StreamMessagesRow = memo(() => {
+    const { stream } = useAppSelector(state => state.stream);
+    const messagesRef: any = useRef(null)
 
-    return <div className="stream__row">
-        <h2 className="stream__row_title">Чат</h2>
+    useEffect(() => {
+        if (messagesRef && messagesRef.current) {
+            const element = messagesRef.current;
+            element.scroll({
+                top: element.scrollHeight,
+                left: 0,
+                behavior: "smooth",
+            });
+        }
+    }, [stream.messages])
 
-        <div className="stream__row_messages">
-            {messages.map(el => (
-                <StreamMessage data={el} key={el.id} />
-            ))}
-        </div>
+    return <div className="stream__row_messages" ref={messagesRef}>
+        {stream.messages.map(el => (
+            <StreamMessage data={el} key={el.id} />
+        ))}
     </div>
-}
+})

@@ -17,6 +17,7 @@ export type UserFullInfoType = {
   name: string;
   surname: string;
   birth_date: Date | string;
+  avatar: string;
   email: string;
   sex: 'мужской' | 'женский';
   role: number;
@@ -91,8 +92,16 @@ export type BookClubType = {
 };
 
 // Stream
+
+export type StreamType = {
+  id: number;
+  streamTitle: string;
+  messages: (StreamItemMessageType & { id: number })[];
+  members: UserFullInfoType[];
+  isGoing: boolean;
+};
+
 export type StreamItemMessageType = {
-  id?: number;
   name: string;
   surname: string;
   message: string;

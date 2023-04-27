@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import cn from 'classnames';
 
 interface IButton {
     type?: "submit" | 'reset' | 'button';
-    text: string;
+    text: string | ReactNode;
     onClick?: () => void;
     className?: string;
 }

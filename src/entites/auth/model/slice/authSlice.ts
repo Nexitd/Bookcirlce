@@ -4,6 +4,7 @@ import {
   UserFullInfoType,
   UserRegistrationDataType,
 } from 'shared/types';
+import avatar from 'assets/images/Ellipse 1.png';
 
 type initialStateType = {
   users: any[];
@@ -25,6 +26,7 @@ export const authSlice = createSlice({
         sex: 'мужской',
         password: '12345',
         email: 'test@gmail.com',
+        avatar: avatar,
         birth_date: new Date().toUTCString(),
         role: 1,
       },
@@ -38,6 +40,17 @@ export const authSlice = createSlice({
         birth_date: new Date().toUTCString(),
         role: 2,
       },
+      {
+        id: 3,
+        name: 'Иван',
+        surname: 'Артемов',
+        sex: 'мужской',
+        password: '123456',
+        avatar: avatar,
+        email: 'test2@gmail.com',
+        birth_date: new Date().toUTCString(),
+        role: 1,
+      },
     ],
     currentUser: {
       id: 1,
@@ -45,6 +58,7 @@ export const authSlice = createSlice({
       surname: 'Иванов',
       sex: 'мужской',
       password: '12345',
+      avatar: avatar,
       email: 'test@gmail.com',
       birth_date: new Date().toUTCString(),
       role: 1,

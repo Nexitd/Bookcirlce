@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import NotificationCard from "../notification-card"
+import { NotificationCard } from "../notification-card"
 import { NotificationModel } from "entites/notification";
 import { useAppDispatch, useAppSelector } from "shared/api"
 import { ACCOUNT_TYPE } from "shared/types";

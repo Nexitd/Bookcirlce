@@ -1,7 +1,7 @@
-import moment from "moment"
 import { FC } from "react"
-import { NotificationType } from "shared/types"
+import moment from "moment"
 import { Button } from "shared/ui"
+import { NotificationType } from "shared/types"
 
 type NotificationCardType = {
     data: NotificationType
@@ -9,7 +9,7 @@ type NotificationCardType = {
     onClick: (id: number) => void;
 }
 
-const NotificationCard: FC<NotificationCardType> = ({ data, role, onClick }) => {
+export const NotificationCard: FC<NotificationCardType> = ({ data, role, onClick }) => {
     return <div className="notification__card">
         <div className="notification__card_head">
             <p className="notification__card_title">{data.title}</p>
@@ -35,4 +35,3 @@ const NotificationCard: FC<NotificationCardType> = ({ data, role, onClick }) => 
     </div>
 }
 
-export default NotificationCard

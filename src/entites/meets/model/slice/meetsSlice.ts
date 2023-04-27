@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { MeetType } from 'shared/types';
+import avatar from 'assets/images/Ellipse 1.png';
 
 type MeetStateType = {
   meets: MeetType[];
@@ -20,6 +21,7 @@ export const meetSlice = createSlice({
             id: 1,
             name: 'Иван',
             surname: 'Артемов',
+            avatar: avatar,
             sex: 'мужской',
             email: 'test2@gmail.com',
             birth_date: new Date().toUTCString(),
@@ -30,6 +32,7 @@ export const meetSlice = createSlice({
             name: ' Олег',
             surname: 'Артемов',
             sex: 'мужской',
+            avatar: avatar,
             email: 'test2@gmail.com',
             birth_date: new Date().toUTCString(),
             role: 2,

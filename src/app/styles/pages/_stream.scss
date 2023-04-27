@@ -1,6 +1,201 @@
 .stream {
+  display: flex;
+  height: 100vh;
+
+  &__members {
+    max-width: 280px;
+    flex: 1;
+    width: 100%;
+    padding: 1em;
+    background: $gray;
+
+    button {
+      margin-top: 1.25em;
+    }
+
+    &_item {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      color: $black;
+      margin-bottom: 1.6em;
+      list-style-type: none;
+
+      svg {
+        margin-right: 0.75em;
+      }
+    }
+
+    &_list {
+      border-top: 1px solid $black;
+      border-bottom: 1px solid $black;
+      padding: 1.75em 0.875em;
+      height: 80vh;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      &-container {
+        width: 100%;
+        height: 80%;
+      }
+    }
+
+    &_title {
+      font-family: 'Noto Sans';
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.6rem;
+      color: $black;
+    }
+  }
+
+  &__form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &_btn {
+      width: 40px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      background: $gray;
+      border: none;
+      box-shadow: inset 0px -1px 0px #cfd4d9, inset 0px 1px 0px #cfd4d9,
+        inset -1px 0px 0px #cfd4d9;
+      border-radius: 0px 4px 4px 0px;
+    }
+
+    &_input {
+      border-radius: 4px 0 0 4px;
+    }
+
+    &_container {
+      max-width: 325px;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  &__row {
+    flex: 1;
+    max-width: 450px;
+    width: 100%;
+    background: $gray;
+    padding: 1em 4em;
+
+    &_messages {
+      height: 90%;
+      width: 100%;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      &-container {
+        width: 100%;
+        height: 80vh;
+      }
+    }
+
+    &_title {
+      font-family: 'Noto Sans';
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.6rem;
+      color: $black;
+      margin-bottom: 1.25em;
+    }
+  }
+
+  &__main {
+    width: 100%;
+    height: 100%;
+    flex: 2;
+
+    &_btns {
+      margin-top: 1.875em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25em;
+
+      button {
+        width: 74px;
+        line-height: 48px;
+      }
+    }
+
+    &_avatar {
+      border: 3px solid $orange;
+      border-radius: 50%;
+
+      img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+      }
+    }
+
+    &_avatars {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.25em;
+    }
+
+    &_item {
+      &-flex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 198px;
+          height: auto;
+          object-fit: cover;
+          border: 8.4px solid $orange;
+          border-radius: 50%;
+          margin-bottom: 1.25em;
+        }
+
+        p {
+          font-weight: 400;
+          font-size: 1rem;
+          line-height: 1.4rem;
+          color: $white;
+        }
+      }
+
+      &:first-child {
+        background: #484444;
+        height: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &:last-child {
+        height: 40%;
+        background: $black;
+
+        padding: 1.8em 3.125em 1em;
+      }
+    }
+  }
+
   &__message {
-    width: 330px;
+    width: 100%;
     padding: 1em;
 
     background: $white;
@@ -27,4 +222,15 @@
       color: #222222;
     }
   }
+}
+
+.mr {
+  margin-right: 0.3em;
+}
+
+.extra-avatars {
+  font-size: 2rem;
+  line-height: 1.5rem;
+  color: $orange;
+  font-weight: bold;
 }
