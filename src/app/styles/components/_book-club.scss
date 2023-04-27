@@ -14,6 +14,19 @@
     &_item {
       margin-top: 3em;
       position: relative;
+      .slick-list {
+        width: 85%;
+        margin: 0 auto;
+        .slick-track {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+      &:not(:nth-of-type(2)) {
+        .slick-list {
+          width: 67%;
+        }
+      }
     }
   }
 
@@ -58,7 +71,7 @@
 
     &_title {
       font-weight: 700;
-      font-family: 'Noto Sans', sans-serif;
+      font-family: "Noto Sans", sans-serif;
       font-size: 1.25rem;
       line-height: 1.7rem;
       color: $black;
