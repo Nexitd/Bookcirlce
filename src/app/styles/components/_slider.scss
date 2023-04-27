@@ -11,6 +11,7 @@
     //   width: 67%;
     //   margin: 0 auto;
     // }
+
   }
   &__btn {
     z-index: 1000000;
@@ -37,6 +38,14 @@
     }
   }
 }
+
+
+.ant-carousel {
+  .slick-list {
+    // margin: 30px;
+  }
+}
+
 
 .slick-slide {
   & > div {

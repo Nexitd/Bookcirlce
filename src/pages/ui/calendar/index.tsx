@@ -1,7 +1,8 @@
 import { MeetCard, MeetModel } from "entites/meets"
 import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "shared/api"
-import { CustomCalendar } from "shared/ui";
+import { CustomCalendar } from "widgets/calendar";
+
 
 const Calendar = () => {
     const { calendar__meets } = useAppSelector(state => state.meets);
