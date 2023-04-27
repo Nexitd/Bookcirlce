@@ -1,4 +1,4 @@
-import { LegacyRef, MutableRefObject, ReactNode, RefObject, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import cn from "classnames";
 
 type CollapseTypeProps = {
@@ -18,7 +18,7 @@ const Collapse = ({ title = '', isImage = false, img = '', arrow, className = ''
 
     useEffect(() => {
         if (!height || !isOpen || !collapseBodyRef.current) return undefined;
-        
+
         const resizeObserver = new ResizeObserver((el) => {
             setHeight(el[0].contentRect.height);
         });

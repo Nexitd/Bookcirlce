@@ -152,8 +152,6 @@ export const authSlice = createSlice({
       state,
       { payload }: PayloadAction<'auth' | 'remember' | 'registration'>
     ) => {
-      console.log(payload);
-
       state.choosedModel = payload;
     },
   },

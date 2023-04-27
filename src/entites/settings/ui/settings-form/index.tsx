@@ -5,7 +5,6 @@ import { useAppSelector } from 'shared/api';
 import { Button, Modal } from 'shared/ui';
 import { SettingsFormModal } from '../settings-form-modal/index';
 
-
 export const SettingsForm = () => {
     const { currentUser } = useAppSelector(state => state.auth);
     const [fileName, setFileName] = useState<string>('');

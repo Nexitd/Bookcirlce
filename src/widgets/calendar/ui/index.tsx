@@ -1,47 +1,9 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import cn from 'classnames';
-
-type monthType = {
-  [key: number]: string
-}
-
-const monthes: monthType = {
-  0: 'янв',
-  1: "фев",
-  2: 'март',
-  3: 'апр',
-  4: 'май',
-  5: 'июнь',
-  6: 'июль',
-  7: 'авг',
-  8: 'сент',
-  9: 'окт',
-  10: 'нояб',
-  11: 'дек'
-};
-
-const dayOfWeeks: string[] = ['вс', 'пон', 'вт', 'ср', 'чт', 'пт', 'сб'];
-
-const getDaysInMonth = (date: any) => {
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-  const days = [];
-  for (let i = 1; i <= daysInMonth; i++) {
-    days.push(new Date(year, month, i));
-  }
-  return days;
-};
-
-const renderWeekdays = () => {
-  return dayOfWeeks.map((day, index) => (
-    <li key={index} className="calendar__weeks">
-      {day}
-    </li>
-  ));
-};
-
+import { dayOfWeeks, monthes } from "../config";
+import { getDaysInMonth } from "../lib/get-days-in-month";
+import { RenderWeekdays } from "../lib/render-weekdays";
+import { RenderDays } from "../lib/render-days";
 
 const CustomCalendar = ({ onClick }: { onClick: (date: Date | string) => void }) => {
   const [date, setDate] = useState(new Date());
@@ -60,36 +22,10 @@ const CustomCalendar = ({ onClick }: { onClick: (date: Date | string) => void })
   const lastDay = days[days.length - 1].getDay();
 
   const handleClick = (day: any) => {
-    console.log(day.getDate());
-
     onClick(new Date(date.getFullYear(), date.getMonth(), day.getDate()).toUTCString());
     setCurr(day.getDate())
   }
 
-  const renderDays = useCallback(() => {
-    const blanks = [];
-    for (let i = 0; i < firstDay; i++) {
-      blanks.push(<div key={-i} className="blank"></div>);
-    }
-
-    const monthDays: any = [];
-    days.forEach((day) => {
-      monthDays.push(
-        <div key={day.getDate()} className={cn("day", day.getDate() === new Date().getDate() && 'day-active', curr === day.getDate() && 'day-target')} onClick={() => handleClick(day)}>
-          <span>{day.getDate()}</span>
-        </div >
-      );
-    });
-
-    const totalDays = [...blanks, ...monthDays];
-
-    const remainingBlanks = [];
-    for (let i = 0; i < 6 - lastDay; i++) {
-      remainingBlanks.push(<div key={`blank_${i}`} className="blank"></div>);
-    }
-
-    return [...totalDays, ...remainingBlanks];
-  }, [date, curr]);
 
 
   return <div className="calendar">
@@ -113,14 +49,27 @@ const CustomCalendar = ({ onClick }: { onClick: (date: Date | string) => void })
       <div className="calendar__body_item">
         <ul className="calendar__body_monthes">
           {Object.keys(monthes).map((key: any) => {
-            return <li key={key} onClick={() => setDate(new Date(date.getFullYear(), Number(key)))} className={cn('calendar__month', date.getMonth() === Number(key) && 'calendar__month-active')}>{monthes[key]}</li>
+            return <li
+              key={key}
+              onClick={() => setDate(new Date(date.getFullYear(), Number(key)))}
+              className={cn('calendar__month',
+                date.getMonth() === Number(key) && 'calendar__month-active')}
+            >
+              {monthes[key]}
+            </li>
           })}
         </ul>
       </div>
       <div className="calendar__body_item">
         <ul className="calendar__body_days">
-          {renderWeekdays()}
-          {renderDays()}
+          <RenderWeekdays dayOfWeeks={dayOfWeeks} />
+          <RenderDays
+            date={date}
+            days={days}
+            lastDay={lastDay}
+            firstDay={firstDay}
+            curr={curr}
+            handleClick={handleClick} />
         </ul>
       </div>
     </div>

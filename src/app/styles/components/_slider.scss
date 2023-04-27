@@ -1,20 +1,6 @@
 .slider {
   &__container {
-<<<<<<< HEAD
     // width: 100%;
-=======
-    width: 100%;
-    // max-width: 915px;
-    // padding: 0 25px;
-    margin: 0 auto;
-    .club__card {
-      margin: 0 auto;
-    }
-    // .slick-list {
-    //   width: 67%;
-    //   margin: 0 auto;
-    // }
->>>>>>> features/slider
   }
   &__btn {
     z-index: 1000000;
@@ -41,8 +27,6 @@
     }
   }
 }
-<<<<<<< HEAD
-=======
 
 .ant-carousel {
   .slick-list {
@@ -55,4 +39,3 @@
     width: auto !important;
   }
 }
->>>>>>> features/slider

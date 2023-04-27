@@ -22,4 +22,4 @@ const StreamRoute = ({ element: RouteComponent }: TRoute) => {
     return isUserInList && stream.isGoing ? <RouteComponent /> : <Navigate to='/my-clubs' />
 }
 
-export default StreamRoute
+export default StreamRoute;

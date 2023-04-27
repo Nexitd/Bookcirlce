@@ -106,3 +106,14 @@ export type StreamItemMessageType = {
   surname: string;
   message: string;
 };
+
+// Book
+
+export type BookType = {
+  id: number;
+  image: string;
+  title: string;
+  description: string;
+  rate: number;
+  author: string;
+};

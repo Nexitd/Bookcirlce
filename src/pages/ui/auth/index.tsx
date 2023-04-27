@@ -1,7 +1,5 @@
 import { RenderAuthModals } from 'features/auth';
 
-
-
 const Auth = () => {
     return (
         <div className="login__page">
