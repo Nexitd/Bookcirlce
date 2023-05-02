@@ -1,0 +1,19 @@
+.breadcrumb {
+  display: flex;
+  list-style-type: none;
+  gap: 0 0.5em;
+
+  &__item {
+    color: $dark-gray;
+    &:last-of-type {
+      color: $orange;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+  &__separator {
+    color: $orange;
+  }
+}
