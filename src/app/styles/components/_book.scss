@@ -1,0 +1,172 @@
+.book {
+  &__hero {
+    display: flex;
+    gap: 3.75em;
+
+    &_tag {
+      margin-right: 1.25em;
+      margin-bottom: 1.25em;
+    }
+
+    &_rate {
+      margin: 0.6em 0 1.8em;
+      display: flex;
+      align-items: center;
+
+      span {
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.4rem;
+        color: #212529;
+      }
+
+      button {
+        border: none;
+        background-color: transparent;
+        outline: none;
+        margin-right: 0.3em;
+
+        &:last-of-type {
+          margin-right: 0.6em;
+        }
+      }
+    }
+
+    &_title {
+      max-width: 630px;
+      width: 100%;
+      font-weight: 700;
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+      letter-spacing: 0.4px;
+      color: #212529;
+      margin-bottom: 0.9em;
+    }
+
+    &_text {
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 1.6rem;
+      color: #212529;
+    }
+  }
+
+  &__shop {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
+
+    &_block {
+      background-color: transparent !important;
+      border: 1px solid $orange !important;
+      color: $orange !important;
+      width: fit-content !important;
+      padding: 10px 24px;
+      line-height: 100% !important;
+    }
+  }
+
+  &__collapse {
+    &_item {
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 1.7rem;
+      color: #212529;
+
+      margin-bottom: 1.5em;
+    }
+  }
+
+  &__row {
+    margin-top: 6.25em;
+
+    .collapse {
+      padding: 1em 0;
+      border-bottom: 1px solid $dark-gray;
+
+      &__body {
+        margin: 0.8em 1.5em;
+      }
+    }
+
+    .collapse__head_title {
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 1.7rem;
+      color: #212529;
+    }
+
+    .collapse-active {
+      .collapse__body {
+        overflow: visible;
+      }
+
+      .collapse__head_title {
+        font-weight: bold;
+      }
+    }
+
+    &_title {
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+      letter-spacing: 0.4px;
+      color: #000000;
+
+      margin-bottom: 1.5em;
+    }
+
+    .slick-list {
+      width: 85%;
+      margin: 0 auto;
+      .slick-track {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    &:not(:nth-of-type(3)) {
+      .slick-list {
+        width: 75%;
+      }
+    }
+  }
+
+  &__card {
+    max-width: 215px;
+    width: 100%;
+    cursor: pointer;
+    height: 100%;
+
+    &_head {
+      margin-bottom: 0.625em;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &_title {
+      font-family: 'Noto Sans';
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.4rem;
+      color: #212529;
+      margin-bottom: 0.4em;
+    }
+
+    &_text {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      color: #212529;
+      margin-bottom: 0;
+    }
+
+    &_footer {
+      margin-top: 0.8em;
+    }
+  }
+}

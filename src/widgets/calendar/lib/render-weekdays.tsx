@@ -1,5 +1,3 @@
-
-
 export const RenderWeekdays = ({ dayOfWeeks }: { dayOfWeeks: any }) => {
     return <>
         {dayOfWeeks.map((day: string, index: number) => (

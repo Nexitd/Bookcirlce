@@ -1,12 +1,29 @@
-import { NotificationRow } from "entites/notification";
-import { FilterByTag } from "features/notification";
-import { Link } from "react-router-dom";
+import { NotificationModel, NotificationRow } from "entites/notification";
+import { FilterByTag } from "features/filter";
+import { useAppDispatch } from "shared/api";
+
+const filters = [
+    {
+        id: 1,
+        name: "old",
+        title: "Старые"
+    },
+    {
+        id: 2,
+        name: 'new',
+        title: "Новые"
+    }
+]
 
 const Notifications = () => {
+    const dispatch = useAppDispatch();
+
+    const handleClick = (type: string) => {
+        dispatch(NotificationModel.changeNotificationType(type))
+    }
     return (
         <div className="wrapper__container">
-            <Link to="/stream">strem</Link>
-            <FilterByTag />
+            <FilterByTag initialValue="new" values={filters} onClick={handleClick} />
             <NotificationRow />
         </div>
     )

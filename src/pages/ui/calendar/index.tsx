@@ -27,7 +27,7 @@ const Calendar = () => {
             <CustomCalendar onClick={checkDate} />
         </div>
         <div className="calendarpage__container_item">
-            {calendar__meets.map(el => (
+            {calendar__meets.map((el: any) => (
                 <MeetCard data={el} key={el.id} onClick={handleClick} />
             ))}
         </div>

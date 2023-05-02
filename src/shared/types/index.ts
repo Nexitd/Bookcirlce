@@ -51,7 +51,7 @@ export type NotificationType = {
   description: string;
   date: any;
   club: string;
-  notification_type: 'new' | 'old';
+  notification_type: string;
   notification_category: 'new_user' | 'broadcast' | 'survey';
 };
 
@@ -89,6 +89,22 @@ export type BookClubType = {
   category: BookClubCategoriesTypeDefinition[];
   members: UserFullInfoType[];
   description: string;
+  books: (BookCardType & { date: Date | string })[];
+};
+
+export type FullBookClubInfoType = {
+  id: number;
+  title: string;
+  image: string;
+  address: string;
+  meeting_type: 'online' | 'offline';
+  category: BookClubCategoriesTypeDefinition[];
+  members: UserFullInfoType[];
+  description: string;
+  books: (BookCardType & { date: Date | string })[];
+  meetings: MeetType[];
+  discussions: DiscussionType[];
+  pols: PolType[];
 };
 
 // Stream
@@ -109,6 +125,33 @@ export type StreamItemMessageType = {
 
 // Book
 
+export enum BookGenre {
+  foreign_literature = 'Зарубежная литература',
+  fantasy = 'Фэнтези',
+  roman = 'Роман',
+  russian_literature = 'Русская литература',
+  detective = 'Детектив',
+  fantastic = 'Фантастика',
+  poem = 'Поэма',
+}
+
+export enum BookCategory {
+  art = 'Художественная',
+  psychology = 'Психология',
+  business = 'Бизнес',
+  self_development = 'Саморазвитие',
+  programming = 'Программирование',
+  design = 'Дизайн',
+  scientific = 'Научная',
+}
+
+export enum BookTags {
+  design = 'Дизайн',
+  creativity = 'Креативность',
+  creative_thinking = 'Творческое мышление',
+  business = 'Бизнес',
+}
+
 export type BookType = {
   id: number;
   image: string;
@@ -116,4 +159,52 @@ export type BookType = {
   description: string;
   rate: number;
   author: string;
+  book_number: string;
+  book_tags: BookTags[];
+  book_filter: string;
+};
+
+export type BookCardType = Pick<
+  BookType,
+  'image' | 'author' | 'title' | 'rate' | 'book_filter'
+> & { id: number };
+
+// Discuussion
+
+export type DiscussionMessageType = {
+  id: number;
+  message_date: Date | string;
+  message: string;
+  likes: number;
+  replyes: number;
+  user: Pick<UserFullInfoType, 'name' | 'surname' | 'avatar'>;
+};
+
+export type DiscussionType = {
+  id: number;
+  title: string;
+  description: string;
+  messages: DiscussionMessageType[];
+  user: Pick<UserFullInfoType, 'name' | 'surname' | 'avatar'>;
+  creation_time: Date | string;
+  discussion_tag: string;
+  members: Pick<UserFullInfoType, 'name' | 'surname' | 'avatar'>[];
+};
+
+// Pols
+
+export type PolVoteType = {
+  id: number;
+  title: string;
+  vote_percent?: number;
+};
+
+export type PolType = {
+  id: number;
+  title: string;
+  date: Date | string;
+  votes_count: number;
+  description: string;
+  vote_variants: PolVoteType[];
+  isFinished: boolean;
 };

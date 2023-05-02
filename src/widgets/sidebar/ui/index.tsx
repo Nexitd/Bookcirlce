@@ -36,11 +36,12 @@ const Sidebar = () => {
                 </svg>
                 }>
                     <ul className="sidebar__list">
-                        {sidebarFooterItems.map(el => (
-                            <li className={cn("sidebar__list_item font-text-noto", pathname === el.to && 'sidebar__link-active')} key={el.id} onClick={() => handleClick(el.to)}>
+                        {sidebarFooterItems.map(el => {
+                            return <li className={cn("sidebar__list_item font-text-noto", pathname === (el.to) && 'sidebar__link-active')} key={el.id} onClick={() => handleClick(el.to)}>
                                 {el.icon}
                                 <span>{el.title}</span>
-                            </li>))}
+                            </li>
+                        })}
                     </ul>
                 </Collapse>
                 : <>

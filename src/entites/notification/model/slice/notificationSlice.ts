@@ -125,7 +125,7 @@ export const notificationSlice = createSlice({
 
     changeNotificationType: (
       state,
-      { payload }: PayloadAction<'new' | 'old'>
+      { payload }: PayloadAction<string>
     ) => {
       state.filtered_notifications = state.notifications.filter(
         (el) => el.notification_type === payload

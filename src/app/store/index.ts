@@ -5,9 +5,12 @@ import {
   configureStore,
 } from '@reduxjs/toolkit';
 import { AuthModel } from 'entites/auth';
+import { BookModel } from 'entites/books';
 import { BooksClubsModel } from 'entites/books-club';
+import { DiscussionModel } from 'entites/discussion';
 import { MeetModel } from 'entites/meets';
 import { NotificationModel } from 'entites/notification';
+import { PolModel } from 'entites/pols';
 import { StreamModel } from 'entites/stream';
 
 const rootReducer = combineReducers({
@@ -16,6 +19,9 @@ const rootReducer = combineReducers({
   meets: MeetModel.meetSlice.reducer,
   books_club: BooksClubsModel.booksClubSlice.reducer,
   stream: StreamModel.streamSlice.reducer,
+  book: BookModel.bookSlice.reducer,
+  discussion: DiscussionModel.discussionSlice.reducer,
+  pol: PolModel.PolSlice.reducer
 });
 
 export const store = configureStore({

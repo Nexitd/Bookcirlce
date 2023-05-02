@@ -14,7 +14,7 @@ export const RenderSidebarItemsRole = ({ pathname, handleClick }: { pathname: st
 
     return <ul className="sidebar__list">
         {sidebarItems.map(el => (
-            <li className={cn("sidebar__list_item font-text-noto", pathname === el.to && 'sidebar__link-active')} key={el.id} onClick={() => handleClick(el.to)}>
+            <li className={cn("sidebar__list_item font-text-noto", pathname.includes(el.to) && 'sidebar__link-active')} key={el.id} onClick={() => handleClick(el.to)}>
                 {el.icon}
                 <span>{el.title}</span>
             </li>

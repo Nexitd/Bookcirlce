@@ -150,3 +150,8 @@ export const validSidebarItemsField: obj = {
     1: sidebarItemsMember,
     2: sidebarItemsModer
 };
+
+// Books consts
+
+export const BooksPulpElements: string[] = ['Издательство МИФ', 'Лабиринт', 'Буквоед', 'Book24', 'ЧитайГород', 'Ozon', 'Wildberries'];
+export const EbookElements: string[] = ['ЛитРес', 'Строки', 'Ozon', 'Bookmate', 'MyBook']

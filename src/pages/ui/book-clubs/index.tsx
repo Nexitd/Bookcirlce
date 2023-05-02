@@ -1,14 +1,13 @@
-import { BooksCharacteristics, BooksClubItem } from "entites/books-club/ui"
-import { SearchBook } from "features/my-clubs"
-
+import { BooksCharacteristics, BooksClubItem } from "entites/books-club"
+import { SearchBook } from "features/search"
 
 const BookClubs = () => {
     return <div className="wrapper__container">
         <div className="club">
-            <SearchBook onSearch={() => { }} />
+            <SearchBook placeholder="Поиск книжных клубов" onSearch={() => { }} />
             <BooksCharacteristics title="Поиск по категориям" />
             <BooksClubItem title="Популярные клубы" />
-            <BooksClubItem title="новые клубы" />
+            <BooksClubItem title="Новые клубы" />
         </div>
     </div>
 }

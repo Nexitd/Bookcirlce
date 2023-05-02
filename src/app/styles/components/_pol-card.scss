@@ -1,0 +1,90 @@
+.pol {
+  &__card {
+    max-width: 415px;
+    width: 100%;
+    background: $white;
+    border: 1px solid $dark-gray;
+    border-radius: 4px;
+    padding: 2em;
+
+    &_title {
+      font-family: 'Noto Sans';
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.7rem;
+      color: $black;
+    }
+
+    &_tags {
+      margin: 1em 0;
+    }
+
+    &_tag {
+      margin-bottom: 1em;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    &_text {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      color: $black;
+    }
+
+    &_votes {
+      margin-top: 1em;
+
+      input[type='radio'] {
+        border: 1px solid $dark-gray;
+
+        &:checked {
+          border: 2px solid $orange;
+        }
+      }
+
+      .vote {
+        &__item {
+          margin-bottom: 1em;
+
+          &_inp {
+            label {
+              display: flex;
+              align-items: center;
+              gap: 0.7em;
+            }
+          }
+        }
+
+        &__container {
+          display: flex;
+          align-items: center;
+          gap: 0.5em;
+
+          &_text {
+            width: 10%;
+            font-weight: 400;
+            font-size: 0.75rem;
+            line-height: 1.8rem;
+            color: $black;
+          }
+        }
+
+        &__line {
+          height: 6px;
+          width: 90%;
+          background: $gray;
+          border-radius: 100px;
+
+          &_item {
+            height: 100%;
+            background-color: $orange;
+            border-radius: 100px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,12 +1,12 @@
-import { MyClubsItem } from "entites/books-club/ui"
-import { SearchBook } from "features/my-clubs"
+import { MyClubsItem } from "entites/books-club"
+import { SearchBook } from "features/search"
 
 const MyClubs = () => {
     const handleSubmit = () => { }
     return (
         <div className="wrapper__container">
             <div className="club">
-                <SearchBook onSearch={handleSubmit} />
+                <SearchBook placeholder="Поиск книжных клубов" onSearch={handleSubmit} />
 
                 <MyClubsItem />
             </div>

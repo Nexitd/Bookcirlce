@@ -3,3 +3,8 @@ export * from './club-row';
 export * from './books-club';
 export * from './my-clubs';
 export * from './characteristic';
+export * from './book-club-hero';
+export * from './club-books';
+export * from './club-meetings';
+export * from './club-discussions';
+export * from './club-pols';

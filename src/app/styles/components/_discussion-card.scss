@@ -1,0 +1,62 @@
+.discussion {
+  &__card {
+    background: $white;
+    padding: 2em;
+    border: 1px solid $dark-gray;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+
+    &_title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.6rem;
+      color: $black;
+    }
+
+    &_tag {
+      margin: 1.25em 0.625em 1.25em 0;
+    }
+
+    &_text {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      color: $black;
+    }
+
+    &_footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.25em;
+
+      button {
+        width: max-content;
+        line-height: 100%;
+        padding: 7px 12px;
+        height: 35px;
+      }
+    }
+
+    &_user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .user {
+        &__name {
+          font-weight: 400;
+          font-size: 0.8rem;
+          line-height: 1rem;
+          color: $black;
+        }
+
+        &__time {
+          font-weight: 400;
+          font-size: 0.8rem;
+          line-height: 1rem;
+          color: $dark-gray;
+        }
+      }
+    }
+  }
+}
