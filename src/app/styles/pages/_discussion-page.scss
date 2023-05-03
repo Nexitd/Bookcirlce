@@ -1,0 +1,31 @@
+.discussion {
+  &__form {
+    width: 100%;
+
+
+    button {
+      line-height: 100%;
+      padding: 7px 12px;
+      width: max-content;
+      height: 38px;
+      margin-top: 1.4em;
+    }
+  }
+
+  &__message {
+    &_row {
+      margin-top: 1.875em;
+      height: 80%;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      &-container {
+        height: 80vh;
+        width: 100%;
+      }
+    }
+  }
+}

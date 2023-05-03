@@ -10,6 +10,8 @@ type initialStateType = {
   book_cards: BookCardType[];
 };
 
+// начальные данные books - книги целиком, book_cards - массив с данными только для краточек книги 
+
 export const bookSlice = createSlice({
   name: 'book',
   initialState: {

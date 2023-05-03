@@ -3,7 +3,9 @@ import { SlickSlider } from "widgets/slider";
 import { FilterByTag } from "features/filter";
 import { MeetCard, MeetModel } from "entites/meets";
 import { useAppDispatch, useAppSelector } from "shared/api";
-import { FullBookClubInfoType, MeetType } from 'shared/types';
+import { ACCOUNT_TYPE, FullBookClubInfoType, MeetType } from 'shared/types';
+import { Button } from "shared/ui";
+import { useNavigate } from "react-router-dom";
 
 const filters = [
     {
@@ -20,6 +22,7 @@ const filters = [
 
 export const ClubMeetings = memo(({ data }: { data: FullBookClubInfoType }) => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate()
     const { currentUser } = useAppSelector(state => state.auth);
     const [filteredData, setFilteredData] = useState<MeetType[]>([]);
 
@@ -60,7 +63,11 @@ export const ClubMeetings = memo(({ data }: { data: FullBookClubInfoType }) => {
             Встречи
         </h2>
 
-        <FilterByTag initialValue="old" values={filters} onClick={filterData} />
+        <div className="club__item_flex">
+            <FilterByTag initialValue="old" values={filters} onClick={filterData} />
+            {ACCOUNT_TYPE[currentUser.role] === "moder" && <Button onClick={() => navigate("/club/add-meet")} text="Добавить встречу" />}
+        </div>
+
 
         <SlickSlider slidesToShow={filteredData.length <= 1 ? 1 : 2}>
             {filteredData.map(el => (

@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   UserAuthDataType,
   UserFullInfoType,
   UserRegistrationDataType,
-} from "shared/types";
-import avatar from "assets/images/Ellipse 1.png";
+} from 'shared/types';
+import avatar from 'assets/images/Ellipse 1.png';
 
 type initialStateType = {
   users: any[];
@@ -12,64 +12,69 @@ type initialStateType = {
   currentUser: (UserFullInfoType & { password: string }) | any;
   isError: boolean;
   isSuccess: boolean;
-  choosedModel: "auth" | "registration" | "remember";
+  choosedModel: 'auth' | 'registration' | 'remember';
 };
 
+// начальные данные. users - массив всех пользователей в приложении, currentUser - текущий юзер, который
+// сейчас находится в приложеннии. choosedModel - параметр для модальных окон, чтобы можно было сделать
+// переключение между окнами авторизации, регистрации и восстановлением пароля. isError - произошла ли ошибка
+// isSuccess - успешно ли всё прошло. isAuth - флаг, отвечающий за то, авторизован пользователь или нет
+
 export const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: {
     users: [
       {
         id: 1,
-        name: "Иван",
-        surname: "Иванов",
-        sex: "мужской",
-        password: "12345",
-        email: "test@gmail.com",
+        name: 'Иван',
+        surname: 'Иванов',
+        sex: 'мужской',
+        password: '12345',
+        email: 'test@gmail.com',
         avatar: avatar,
         birth_date: new Date().toUTCString(),
         role: 1,
       },
       {
         id: 2,
-        name: "Иван",
-        surname: "Артемов",
-        sex: "мужской",
-        password: "123456",
-        email: "test2@gmail.com",
+        name: 'Иван',
+        surname: 'Артемов',
+        sex: 'мужской',
+        password: '123456',
+        email: 'test2@gmail.com',
         birth_date: new Date().toUTCString(),
         role: 2,
       },
       {
         id: 3,
-        name: "Иван",
-        surname: "Артемов",
-        sex: "мужской",
-        password: "123456",
+        name: 'Иван',
+        surname: 'Артемов',
+        sex: 'мужской',
+        password: '123456',
         avatar: avatar,
-        email: "test2@gmail.com",
+        email: 'test2@gmail.com',
         birth_date: new Date().toUTCString(),
         role: 1,
       },
     ],
     currentUser: {
-      id: 1,
-      name: "Иван",
-      surname: "Иванов",
-      sex: "мужской",
-      password: "12345",
-      avatar: avatar,
-      email: "test@gmail.com",
+      id: 2,
+      name: 'Иван',
+      surname: 'Артемов',
+      sex: 'мужской',
+      password: '123456',
+      email: 'test2@gmail.com',
       birth_date: new Date().toUTCString(),
-      role: 1,
+      role: 2,
     },
     isError: false,
     isSuccess: false,
     isAuth: true,
-    choosedModel: "auth",
+    choosedModel: 'auth',
   } as initialStateType,
   reducers: {
-    // регистрация
+    // регистрация. Принимаем модель нового пользователя, проверяем нет ли еще такого пользователя
+    // еелси нет, то пушим нового пользователя в общий массив и потом меняем флаги
 
     createNewUser: (
       state,
@@ -136,21 +141,21 @@ export const authSlice = createSlice({
       state.isAuth = false;
       state.isSuccess = false;
       state.isError = false;
-      state.choosedModel = "auth";
+      state.choosedModel = 'auth';
     },
 
     logOut: (state) => {
       state.isAuth = false;
       state.isSuccess = false;
       state.isError = false;
-      state.choosedModel = "auth";
+      state.choosedModel = 'auth';
     },
 
     // переключение типов окон 'вход/регестрация/восстановление пароля'
 
     setModalType: (
       state,
-      { payload }: PayloadAction<"auth" | "remember" | "registration">
+      { payload }: PayloadAction<'auth' | 'remember' | 'registration'>
     ) => {
       state.choosedModel = payload;
     },

@@ -2,7 +2,9 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import {
   BookClubCategoriesTypeDefinition,
   BookClubType,
+  DiscussionMessageType,
   FullBookClubInfoType,
+  UserFullInfoType,
 } from 'shared/types';
 import img1 from 'assets/images/des.png';
 import img2 from 'assets/images/img.png';
@@ -15,7 +17,13 @@ import image4 from 'assets/images/books/pic4.png';
 
 import avatar from 'assets/images/avatar.png';
 
-// Убрать потом фотографии если врдгу тут появится бэкенд
+// Убрать потом фотографии если вдргуг тут появится бэкенд
+
+// типы для стейта clubs - это все клубы в принципе
+// myClubs - только мои клубы
+// categories - категории в глубах (научпоп и тд)
+// fullBookClubInfo - полная информация о клубе со всеми остальными моделями (опросы, обусждения и тд)
+// filtered_data - данные после фильтрации, тут в основном используется только для книг, чтобы по типу их разделить
 
 type initialStateType = {
   clubs: BookClubType[];
@@ -24,9 +32,6 @@ type initialStateType = {
   fullBookClubInfo: FullBookClubInfoType[];
   filtered_data: any;
 };
-
-// TODO Не забыть разширить общий тип для книжных клубов, чтобы
-// можно было использовать этот слайс при разработки полной страницы клуба
 
 export const booksClubSlice = createSlice({
   name: 'books_club',
@@ -441,70 +446,6 @@ export const booksClubSlice = createSlice({
             image: image4,
             book_filter: 'old',
           },
-          {
-            id: 5,
-            title: 'Дизайн привычных вещей',
-            rate: 4.9,
-            author: 'Дон Норман',
-            image: image1,
-            book_filter: 'old',
-          },
-          {
-            id: 6,
-            title: 'Дизайн мышление',
-            rate: 4,
-            author: 'Тим Браун',
-            image: image2,
-            book_filter: 'present',
-          },
-          {
-            id: 7,
-            title: 'Рисовый штурм',
-            rate: 3.9,
-            author: 'Майкл Микалко',
-            image: image3,
-            book_filter: 'future',
-          },
-          {
-            id: 8,
-            title: 'О шрифте',
-            rate: 4.3,
-            author: 'Эрик Шпикерманн',
-            image: image4,
-            book_filter: 'old',
-          },
-          {
-            id: 9,
-            title: 'Дизайн привычных вещей',
-            rate: 4.9,
-            author: 'Дон Норман',
-            image: image1,
-            book_filter: 'old',
-          },
-          {
-            id: 10,
-            title: 'Дизайн мышление',
-            rate: 4,
-            author: 'Тим Браун',
-            image: image2,
-            book_filter: 'present',
-          },
-          {
-            id: 11,
-            title: 'Рисовый штурм',
-            rate: 3.9,
-            author: 'Майкл Микалко',
-            image: image3,
-            book_filter: 'future',
-          },
-          {
-            id: 12,
-            title: 'О шрифте',
-            rate: 4.3,
-            author: 'Эрик Шпикерманн',
-            image: image4,
-            book_filter: 'old',
-          },
         ],
         discussions: [
           {
@@ -847,70 +788,6 @@ export const booksClubSlice = createSlice({
             image: image4,
             book_filter: 'old',
           },
-          {
-            id: 5,
-            title: 'Дизайн привычных вещей',
-            rate: 4.9,
-            author: 'Дон Норман',
-            image: image1,
-            book_filter: 'old',
-          },
-          {
-            id: 6,
-            title: 'Дизайн мышление',
-            rate: 4,
-            author: 'Тим Браун',
-            image: image2,
-            book_filter: 'present',
-          },
-          {
-            id: 7,
-            title: 'Рисовый штурм',
-            rate: 3.9,
-            author: 'Майкл Микалко',
-            image: image3,
-            book_filter: 'future',
-          },
-          {
-            id: 8,
-            title: 'О шрифте',
-            rate: 4.3,
-            author: 'Эрик Шпикерманн',
-            image: image4,
-            book_filter: 'old',
-          },
-          {
-            id: 9,
-            title: 'Дизайн привычных вещей',
-            rate: 4.9,
-            author: 'Дон Норман',
-            image: image1,
-            book_filter: 'old',
-          },
-          {
-            id: 10,
-            title: 'Дизайн мышление',
-            rate: 4,
-            author: 'Тим Браун',
-            image: image2,
-            book_filter: 'present',
-          },
-          {
-            id: 11,
-            title: 'Рисовый штурм',
-            rate: 3.9,
-            author: 'Майкл Микалко',
-            image: image3,
-            book_filter: 'future',
-          },
-          {
-            id: 12,
-            title: 'О шрифте',
-            rate: 4.3,
-            author: 'Эрик Шпикерманн',
-            image: image4,
-            book_filter: 'old',
-          },
         ],
         discussions: [
           {
@@ -1234,70 +1111,6 @@ export const booksClubSlice = createSlice({
           },
           {
             id: 4,
-            title: 'О шрифте',
-            rate: 4.3,
-            author: 'Эрик Шпикерманн',
-            image: image4,
-            book_filter: 'old',
-          },
-          {
-            id: 5,
-            title: 'Дизайн привычных вещей',
-            rate: 4.9,
-            author: 'Дон Норман',
-            image: image1,
-            book_filter: 'old',
-          },
-          {
-            id: 6,
-            title: 'Дизайн мышление',
-            rate: 4,
-            author: 'Тим Браун',
-            image: image2,
-            book_filter: 'present',
-          },
-          {
-            id: 7,
-            title: 'Рисовый штурм',
-            rate: 3.9,
-            author: 'Майкл Микалко',
-            image: image3,
-            book_filter: 'future',
-          },
-          {
-            id: 8,
-            title: 'О шрифте',
-            rate: 4.3,
-            author: 'Эрик Шпикерманн',
-            image: image4,
-            book_filter: 'old',
-          },
-          {
-            id: 9,
-            title: 'Дизайн привычных вещей',
-            rate: 4.9,
-            author: 'Дон Норман',
-            image: image1,
-            book_filter: 'old',
-          },
-          {
-            id: 10,
-            title: 'Дизайн мышление',
-            rate: 4,
-            author: 'Тим Браун',
-            image: image2,
-            book_filter: 'present',
-          },
-          {
-            id: 11,
-            title: 'Рисовый штурм',
-            rate: 3.9,
-            author: 'Майкл Микалко',
-            image: image3,
-            book_filter: 'future',
-          },
-          {
-            id: 12,
             title: 'О шрифте',
             rate: 4.3,
             author: 'Эрик Шпикерманн',
@@ -1646,70 +1459,6 @@ export const booksClubSlice = createSlice({
             image: image4,
             book_filter: 'old',
           },
-          {
-            id: 5,
-            title: 'Дизайн привычных вещей',
-            rate: 4.9,
-            author: 'Дон Норман',
-            image: image1,
-            book_filter: 'old',
-          },
-          {
-            id: 6,
-            title: 'Дизайн мышление',
-            rate: 4,
-            author: 'Тим Браун',
-            image: image2,
-            book_filter: 'present',
-          },
-          {
-            id: 7,
-            title: 'Рисовый штурм',
-            rate: 3.9,
-            author: 'Майкл Микалко',
-            image: image3,
-            book_filter: 'future',
-          },
-          {
-            id: 8,
-            title: 'О шрифте',
-            rate: 4.3,
-            author: 'Эрик Шпикерманн',
-            image: image4,
-            book_filter: 'old',
-          },
-          {
-            id: 9,
-            title: 'Дизайн привычных вещей',
-            rate: 4.9,
-            author: 'Дон Норман',
-            image: image1,
-            book_filter: 'old',
-          },
-          {
-            id: 10,
-            title: 'Дизайн мышление',
-            rate: 4,
-            author: 'Тим Браун',
-            image: image2,
-            book_filter: 'present',
-          },
-          {
-            id: 11,
-            title: 'Рисовый штурм',
-            rate: 3.9,
-            author: 'Майкл Микалко',
-            image: image3,
-            book_filter: 'future',
-          },
-          {
-            id: 12,
-            title: 'О шрифте',
-            rate: 4.3,
-            author: 'Эрик Шпикерманн',
-            image: image4,
-            book_filter: 'old',
-          },
         ],
         discussions: [
           {
@@ -1999,13 +1748,59 @@ export const booksClubSlice = createSlice({
     ],
   } as initialStateType,
   reducers: {
-    connetToClub: (state, { payload }: PayloadAction<BookClubType>) => {
-      state.myClubs.push(payload);
+    // присоединение к клубу. Функция принимает структуру клуба и пользователя
+    // структура клуба просто добавляется в массив myClubs, а структура юзера используется
+    // для того, чтобы добавить его в поле member в структуре всех клубов и общей страницы клуба.
+    // Находим нужный клуб по id и потом в массив добавляем нашего пользователя
+
+    connetToClub: (
+      state,
+      { payload }: PayloadAction<{ club: BookClubType; user: UserFullInfoType }>
+    ) => {
+      state.myClubs.push(payload.club);
+      state.fullBookClubInfo = state.fullBookClubInfo.map((el) => {
+        if (el.id === payload.club.id) {
+          el.members.push(payload.user);
+        }
+
+        return el;
+      });
+
+      state.clubs = state.clubs.map((el) => {
+        if (el.id === payload.club.id) {
+          el.members.push(payload.user);
+        }
+
+        return el;
+      });
     },
 
-    leaveFromClub: (state, { payload }: PayloadAction<number>) => {
-      state.myClubs = state.myClubs.filter((el) => el.id !== payload);
+    // выход из клуба. Работа аналогична функции добавления, тольк здесь мы с помощью filter наоборот убираем данныее из масивов
+
+    leaveFromClub: (
+      state,
+      { payload }: PayloadAction<{ user: UserFullInfoType; id: number }>
+    ) => {
+      state.myClubs = state.myClubs.filter((el) => el.id !== payload.id);
+      state.fullBookClubInfo = state.fullBookClubInfo.map((el) => {
+        if (el.id === payload.id) {
+          el.members = el.members.filter((elem) => elem.id !== payload.user.id);
+        }
+
+        return el;
+      });
+
+      state.clubs = state.clubs.map((el) => {
+        if (el.id === payload.id) {
+          el.members = el.members.filter((elem) => elem.id !== payload.user.id);
+        }
+
+        return el;
+      });
     },
+
+    // Получение отфилтрованных книг по фильтру (читали ранее и тд). Функция принимает id клуба и фильтр
+    // после того, как мы нашли клуб, находим только те элементы, у которых фильтр равен тому, что мы передали ранее
 
     getFilteredBooks: (
       state,
@@ -2021,10 +1816,49 @@ export const booksClubSlice = createSlice({
         return el;
       });
     },
+
+    // Добавление новых сообщений в обсуждение. В качестве входных параметров у нас выступает id клуба
+    // id обсуждения и модель нового сообщения. В начале мы находим нужный клуб, потом нужное обсуждение и в массив сообщений
+    // добавляем новое сообщение
+
+    addMessageToDiscuussion: (
+      state,
+      {
+        payload,
+      }: PayloadAction<{
+        club_id: number;
+        discussion_id: number;
+        message: DiscussionMessageType;
+      }>
+    ) => {
+      console.log(payload);
+
+      state.fullBookClubInfo = state.fullBookClubInfo.map((el) => {
+        if (el.id === payload.club_id) {
+          el.discussions = el.discussions.map((elem) => {
+            if (elem.id === payload.discussion_id) {
+              payload.message.id =
+                elem.messages[elem.messages.length - 1].id + 1;
+              elem.messages.push(payload.message);
+            }
+
+            return elem;
+          });
+        }
+
+        return el;
+      });
+    },
   },
 });
 
-export const { connetToClub, leaveFromClub, getFilteredBooks } =
-  booksClubSlice.actions;
+// экспортируем все функции, чтобы их можно было использовать в других файлах
+
+export const {
+  connetToClub,
+  leaveFromClub,
+  getFilteredBooks,
+  addMessageToDiscuussion,
+} = booksClubSlice.actions;
 
 export default booksClubSlice.reducer;

@@ -4,10 +4,11 @@ import { Button, ColorableTag } from "shared/ui";
 
 type DiscussionCardPropsType = {
     data: DiscussionType;
-    onClick: (id: number) => void
+    onClick?: (id: number) => void;
+    isBtn?: boolean
 }
 
-export const DiscussionCard = ({ data, onClick }: DiscussionCardPropsType) => {
+export const DiscussionCard = ({ data, onClick = () => { }, isBtn = true }: DiscussionCardPropsType) => {
     return <div className="discussion__card" >
         <h2 className="discussion__card_title">{data.title}</h2>
         <ColorableTag className="discussion__card_tag" icon={<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +36,9 @@ export const DiscussionCard = ({ data, onClick }: DiscussionCardPropsType) => {
                 <p className="user__time">{moment(data.creation_time).format("DD.MM.YYYY HH:mm")}</p>
             </div>
 
-            <Button text="Открыть" onClick={() => onClick(data.id)} />
+            {isBtn &&
+                <Button text="Открыть" onClick={() => onClick(data.id)} />
+            }
         </div>
     </div>
 }

@@ -1,4 +1,4 @@
-import { FC, useCallback } from "react"
+import { FC, useMemo } from "react"
 import moment from "moment"
 import { Button, ColorableTag } from "shared/ui"
 import { MeetType } from "shared/types"
@@ -11,12 +11,14 @@ interface IMeetCard {
 
 export const MeetCard: FC<IMeetCard> = ({ data, onClick }) => {
     const { currentUser } = useAppSelector(state => state.auth)
-    const userIncludes = useCallback(() => {
+    const userIncludes = useMemo(() => {
         const validMeet = data.members.filter(elem => elem.id === currentUser.id);
 
+        console.log(validMeet);
 
         return Boolean(validMeet.length)
-    }, [])
+    }, [data.members.length])
+
     return <div className="meet__card">
         <h2 className="meet__card_title">{data.title}</h2>
 
@@ -45,8 +47,8 @@ export const MeetCard: FC<IMeetCard> = ({ data, onClick }) => {
 
         <p className="meet__card_text">{data.description}</p>
 
-        {new Date(data.meeting_date).toISOString() > new Date().toISOString() &&
-            <Button text={userIncludes() ? "Отменить участие" : "Принять участие"} className="meet__card_btn" onClick={() => onClick(data.id)} />
+        {moment(data.meeting_date).format("DD.MM.YYYY HH:mm") >= moment().format("DD.MM.YYYY HH:mm") &&
+            <Button text={userIncludes ? "Отменить участие" : "Принять участие"} className="meet__card_btn" onClick={() => onClick(data.id)} />
         }
     </div>
 }

@@ -1,6 +1,10 @@
+import { CreateClubForm } from "entites/create-club"
+
 const CreateClub = () => {
     return (
-        <div>CreateClub</div>
+        <div className="wrapper__container">
+            <CreateClubForm />
+        </div>
     )
 }
 

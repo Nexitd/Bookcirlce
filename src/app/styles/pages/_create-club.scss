@@ -1,0 +1,184 @@
+.create__club {
+  &_form {
+    display: flex;
+    justify-content: space-between;
+    gap: 6.8em;
+  }
+
+  &_btns {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &_btn {
+    margin-top: 1.875em;
+    line-height: 100%;
+    height: 40px;
+    padding: 10px 24px;
+    width: max-content;
+    margin-left: auto;
+  }
+
+  &_blocks {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1.875em;
+
+
+    select {
+      padding: 0.8em;
+      height: 54px;
+      background: $white;
+      border: 1px solid $dark-gray;
+      box-shadow: 0px 0px 0px #cbdafc;
+      border-radius: 4px;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+
+      &:not([multiple]) {
+        padding-right: 0.8em;
+        background-repeat: no-repeat;
+        background-position: calc(100% - 0.8em) center;
+        background-size: 0.85em auto;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M70.3 13.8L40 66.3 9.7 13.8z' fill='%23000'%3E%3C/path%3E%3C/svg%3E");
+      }
+
+      &::-ms-expand {
+        display: none;
+      }
+    }
+  }
+
+  &_title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.4rem;
+    color: #212529;
+    margin-bottom: 1em;
+  }
+
+  &_description {
+    background-color: $white;
+    border: 1px solid #cfd4d9;
+    box-shadow: 0px 0px 0px #cbdafc;
+    border-radius: 4px;
+    padding: 1em;
+    outline: none;
+
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    color: $black;
+    outline: none;
+    padding: 7px 12px;
+  }
+
+  &_subtext {
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 1.3rem;
+    color: $dark-gray;
+    margin-top: 0.6em;
+  }
+
+  &_checks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    input {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+
+    label {
+      display: flex;
+
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      color: $black;
+    }
+  }
+
+  &_inp {
+    &-popup {
+      position: absolute;
+      max-height: 250px;
+      overflow-y: auto;
+      z-index: 100000;
+      background: $white;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1em 0;
+      border: 1px solid $gray;
+      border-top: none;
+      border-radius: 0px 0 4px 4px;
+
+      .list__item {
+        width: 100%;
+        margin-bottom: 1em;
+        padding: 1em;
+        list-style: none;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $orange;
+
+          span {
+            color: $white;
+          }
+        }
+
+        span {
+          color: $black;
+          font-size: 1rem;
+          line-height: 1.4rem;
+        }
+      }
+    }
+
+    &-results {
+      z-index: 0;
+      margin-top: 1.25em;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+
+      div {
+        cursor: pointer;
+      }
+    }
+
+    &-block {
+      display: flex;
+
+      input {
+        border-radius: 4px 0 0 4px;
+      }
+
+      span {
+        display: block;
+        width: 40px;
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $gray;
+        box-shadow: inset 0px -1px 0px #cfd4d9, inset 0px 1px 0px #cfd4d9,
+          inset -1px 0px 0px #cfd4d9;
+        border-radius: 0px 4px 4px 0px;
+      }
+    }
+  }
+}
+
+.club__form {
+  &_item {
+    width: 50%;
+  }
+}

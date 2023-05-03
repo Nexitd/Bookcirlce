@@ -5,16 +5,18 @@ import moment from "moment";
 import { useAppSelector } from "shared/api";
 import { Button, Modal } from "shared/ui";
 import { SettingsFormModal } from "../settings-form-modal/index";
+import { useNavigate } from "react-router-dom";
 
 
 
 export const SettingsForm = () => {
+  const navigate = useNavigate();
   const { currentUser } = useAppSelector((state) => state.auth);
   const [fileName, setFileName] = useState<string>("");
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [modalType, setModalType] = useState<"password" | "delete">("delete");
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => { };
 
   const showModal = useCallback(
     () => setIsModalVisible((prev) => !prev),
@@ -170,6 +172,7 @@ export const SettingsForm = () => {
             />
             <div>
               <Button
+                onClick={() => navigate(-1)}
                 text="Отменить"
                 className="control__btn control__cancel"
               />

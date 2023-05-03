@@ -5,11 +5,11 @@ import { useAppSelector } from "shared/api";
 import { Breadcrumbs } from "shared/ui"
 
 const BooksClubPage = () => {
-    const { id } = useParams()
-    const { pathname } = useLocation()
+    const { id } = useParams();
+    const { pathname } = useLocation();
     const { fullBookClubInfo } = useAppSelector(state => state.books_club);
 
-    const currentClub = useMemo(() => fullBookClubInfo.filter(el => el.id === Number(id))[0], [id]);
+    const currentClub = fullBookClubInfo.filter(el => el.id === Number(id))[0];
 
     return <div className="club wrapper__container">
         <Breadcrumbs path={pathname} />

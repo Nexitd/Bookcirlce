@@ -11,10 +11,12 @@ const CustomCalendar = ({ onClick }: { onClick: (date: Date | string) => void })
 
   const prevYear = () => {
     setDate(new Date(date.getFullYear() - 1, date.getMonth()));
+    setCurr(0)
   };
 
   const nextYear = () => {
     setDate(new Date(date.getFullYear() + 1, date.getMonth()));
+    setCurr(0)
   };
 
   const days = getDaysInMonth(date);
@@ -51,7 +53,7 @@ const CustomCalendar = ({ onClick }: { onClick: (date: Date | string) => void })
           {Object.keys(monthes).map((key: any) => {
             return <li
               key={key}
-              onClick={() => setDate(new Date(date.getFullYear(), Number(key)))}
+              onClick={() => { setDate(new Date(date.getFullYear(), Number(key))); setCurr(0) }}
               className={cn('calendar__month',
                 date.getMonth() === Number(key) && 'calendar__month-active')}
             >

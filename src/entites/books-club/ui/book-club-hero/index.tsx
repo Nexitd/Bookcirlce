@@ -1,32 +1,34 @@
+import { memo, useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { BooksClubsModel } from "entites/books-club";
-import { memo, useMemo } from "react";
-import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "shared/api";
-import { FullBookClubInfoType } from "shared/types";
 import { Button, ColorableTag } from "shared/ui";
+import { ACCOUNT_TYPE, FullBookClubInfoType } from "shared/types";
 
 export const BookClubHero = memo(({ data }: { data: FullBookClubInfoType }) => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const { currentUser } = useAppSelector(state => state.auth);
+    const [isChanged, setIsChanged] = useState<boolean>(false)
     const dispatch = useAppDispatch();
 
+    const editClub = () => navigate('/edit-club')
 
     const isUserInClub = useMemo(() => {
-        const isCurrUser = data.members.map(el => {
-            if (el.id === currentUser.id) return el;
-        });
+        const isCurrUser = data.members.filter(el => el.id === currentUser.id);
 
         return Boolean(isCurrUser.length)
-    }, [id]);
+    }, [id, isChanged, data]);
 
     const changeClubMemberStatus = () => {
+        setIsChanged(prev => !prev)
         if (isUserInClub) {
-            dispatch(BooksClubsModel.leaveFromClub(Number(id)))
+            dispatch(BooksClubsModel.leaveFromClub({ id: Number(id), user: currentUser }))
 
             return
         }
 
-        dispatch(BooksClubsModel.connetToClub(data))
+        dispatch(BooksClubsModel.connetToClub({ club: data, user: currentUser }));
     }
 
     const copyClubLink = () => navigator.clipboard.writeText(window.location.href)
@@ -34,8 +36,8 @@ export const BookClubHero = memo(({ data }: { data: FullBookClubInfoType }) => {
     return <div className="club__hero">
         <div className="club__hero_item">
             <img src={data.image} alt="club image" />
-            <Button text="Копировать ссылку" onClick={copyClubLink} />
-            <Button text={isUserInClub ? "Покинуть клуб" : "Вступить в клуб"} onClick={changeClubMemberStatus} />
+            <Button text="Копировать ссылку" className="club__hero_btn" onClick={copyClubLink} />
+            {ACCOUNT_TYPE[currentUser.role] === "member" ? <Button className="club__hero_btn" text={isUserInClub ? "Покинуть клуб" : "Вступить в клуб"} onClick={changeClubMemberStatus} /> : <Button text="Редактировать" onClick={editClub} />}
         </div>
         <div className="club__hero_item">
             <h2 className="club__hero_title">{data.title}</h2>

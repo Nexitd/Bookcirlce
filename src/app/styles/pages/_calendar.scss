@@ -2,19 +2,38 @@
   margin: 2.3em auto 0 !important;
   width: 100%;
   display: flex;
+  border: 1px solid $dark-gray;
+
+  &_btn {
+    margin-top: 3.75em;
+    line-height: 100%;
+    align-self: flex-end;
+    margin-right: 1.6em;
+    width: max-content;
+    padding: 7px 12px;
+    height: 48px;
+  }
 
   &_item {
     &:first-of-type {
+      background-color: $white;
       max-width: 55%;
+      padding: 1.75em 0;
+      display: flex;
+      flex-direction: column;
       width: 100%;
     }
 
     &:last-of-type {
       max-width: 45%;
       width: 100%;
+      border-left: 1px solid $dark-gray;
       background: $gray;
-      border: 1px solid $dark-gray;
       padding: 4.3em 2.4em 0;
+
+      .meet__card {
+        margin-bottom: 1.25em;
+      }
     }
   }
 }

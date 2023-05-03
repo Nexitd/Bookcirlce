@@ -1,10 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { MeetType, UserFullInfoType } from 'shared/types';
 import avatar from 'assets/images/Ellipse 1.png';
+import moment from 'moment';
 
 type MeetStateType = {
   meets: MeetType[];
   calendar__meets: MeetType[] | any;
+  myMeet: MeetType[];
 };
 
 export const meetSlice = createSlice({
@@ -84,7 +86,28 @@ export const meetSlice = createSlice({
           'Обсудим знаменитую книгу Дона Нормана о том как создавать интуитивный дизайн, который нравится людям.',
         meeting_type: 'online',
       },
+      {
+        id: 2,
+        title: 'Дизайн вещей',
+        title_tag: '“Дизайн привычных вещей” Дон Норман',
+        meeting_date: new Date(2023, 6, 17).toUTCString(),
+        members: [
+          {
+            id: 1,
+            name: 'Иван',
+            surname: 'Иванов',
+            sex: 'мужской',
+            email: 'test@gmail.com',
+            birth_date: new Date().toUTCString(),
+            role: 1,
+          },
+        ],
+        description:
+          'Обсудим знаменитую книгу Дона Нормана о том как создавать интуитивный дизайн, который нравится людям.',
+        meeting_type: 'online',
+      },
     ],
+    myMeet: [],
   } as MeetStateType,
   reducers: {
     // отписаться от встречи
@@ -92,6 +115,7 @@ export const meetSlice = createSlice({
       state,
       { payload }: PayloadAction<{ currentUserId: number; meetId: number }>
     ) => {
+      state.myMeet = state.myMeet.filter((el) => el.id !== payload.meetId);
       state.calendar__meets = [
         ...state.calendar__meets.map((el: any) => {
           if (el.id === payload.meetId) {
@@ -130,16 +154,41 @@ export const meetSlice = createSlice({
       });
     },
 
+    getMyMeets: (state, { payload }: PayloadAction<number>) => {
+      state.myMeet = state.meets.filter((el) => {
+        const usersArr = el.members.filter((elem) => elem.id === payload);
+
+        if (usersArr.length !== 0) return el;
+      });
+    },
+
     // получить встречу по дате из календаря
 
-    getMeetByDate: (state, { payload }: PayloadAction<Date | string>) => {
-      state.calendar__meets = [
-        ...state.meets.filter((el) => el.meeting_date === payload),
+    getMeetByDate: (
+      state,
+      {
+        payload,
+      }: PayloadAction<{ date: Date | string; user: UserFullInfoType }>
+    ) => {
+      state.myMeet = [
+        ...state.calendar__meets.filter((el: MeetType) => {
+          const validUsers = el.members.filter(
+            (elem) => elem.id === payload.user.id
+          );
+
+          if (
+            validUsers.length !== 0 &&
+            moment(el.meeting_date).format('DD.MM.YYYY') ===
+              moment(payload.date).format('DD.MM.YYYY')
+          )
+            return el;
+        }),
       ];
     },
   },
 });
 
-export const { unsubscribeToMeet, getMeetByDate, subscribeToMeet } = meetSlice.actions;
+export const { unsubscribeToMeet, getMeetByDate, subscribeToMeet, getMyMeets } =
+  meetSlice.actions;
 
 export default meetSlice.reducer;

@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import classNames from "classnames";
+import moment from "moment";
 
 type RenderDaysPropsType = {
     date: any,
@@ -23,7 +24,7 @@ export const RenderDays = ({ date, firstDay, days, lastDay, curr, handleClick }:
                 <div
                     key={day.getDate()}
                     className={classNames("day",
-                        day.getDate() === new Date().getDate() && 'day-active',
+                        moment(day).format("DD.MM.YYYY") === moment().format("DD.MM.YYYY") && 'day-active',
                         curr === day.getDate() && 'day-target')}
                     onClick={() => handleClick(day)}>
                     <span>{day.getDate()}</span>

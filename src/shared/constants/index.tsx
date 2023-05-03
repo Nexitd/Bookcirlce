@@ -93,7 +93,7 @@ export const sidebarItemsModer: SidebarItemsType[] = [
             <path d="M4.5 8C5.88071 8 7 6.88071 7 5.5C7 4.11929 5.88071 3 4.5 3C3.11929 3 2 4.11929 2 5.5C2 6.88071 3.11929 8 4.5 8Z" fill="#222222" />
         </svg>,
         children: [],
-        to: "/clubs/my"
+        to: "/my-clubs"
     },
     {
         id: 4,

@@ -1,0 +1,38 @@
+.discussion__message {
+  padding-bottom: 1.25em;
+  width: 100%;
+  border-bottom: 1px solid $gray;
+  margin-bottom: 1.875em;
+
+  &_text {
+    font-size: 1rem;
+    line-height: 1.4rem;
+    color: $black;
+    opacity: 0.8;
+  }
+
+  &_footer {
+    margin-top: 1.25em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .discussion__card_user {
+        width: 100%;
+    }
+  }
+
+  &_actions {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+
+    span {
+      font-size: 1rem;
+      line-height: 1.4rem;
+      color: $black;
+      opacity: 0.8;
+    }
+  }
+}
