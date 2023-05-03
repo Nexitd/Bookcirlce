@@ -1831,7 +1831,6 @@ export const booksClubSlice = createSlice({
         message: DiscussionMessageType;
       }>
     ) => {
-      console.log(payload);
 
       state.fullBookClubInfo = state.fullBookClubInfo.map((el) => {
         if (el.id === payload.club_id) {

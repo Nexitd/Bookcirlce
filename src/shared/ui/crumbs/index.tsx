@@ -1,26 +1,48 @@
-import { memo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { FC } from "react";
+import { memo } from "react";
+import { NavLink } from "react-router-dom";
 
-const Breadcrumbs = ({ path }: { path: string }) => {
-    const crumbs = path.split('/').filter((x: string) => x !== '');
-
-    const { state } = useLocation();
-    console.log(state);
-
-    return (
-        <ul className="breadcrumbs">
-            {crumbs.map((crumb: string, index: number) => {
-                const link = `/${crumbs.slice(0, index + 1).join('/')}`;
-                const text = crumb.charAt(0).toUpperCase() + crumb.slice(1);
-
-                return (
-                    <li key={index}>
-                        <Link to={link}>{text}</Link>
-                    </li>
-                );
-            })}
-        </ul>
-    );
+type TBread = {
+  data: { to: string; label: string }[];
+  separator?: string;
 };
 
-export default memo(Breadcrumbs);
+const BreadcrumbSeparator = ({ children }: { children: string }) => (
+  <li className="breadcrumb__separator">{children}</li>
+);
+
+
+const TestCrumbCopy: FC<TBread> = ({ separator = ">", data }) => {
+  const children = data.map((child, index) => {
+    return (
+      <li key={`breadcrumb_item${index}`} className="breadcrumb__item">
+        {child.to !== "" ? (
+          <NavLink to={child.to}>{child.label}</NavLink>
+        ) : (
+          child.label
+        )}
+      </li>
+    );
+  });
+
+  const lastIndex = children.length - 1;
+
+  const res = children.reduce((acc, child, index) => {
+    const notLast = index < lastIndex;
+    if (notLast) {
+      acc.push(
+        child,
+        <BreadcrumbSeparator key={`breadcrumb_sep${index}`}>
+          {separator}
+        </BreadcrumbSeparator>
+      );
+    } else {
+      acc.push(child);
+    }
+    return acc;
+  }, [] as JSX.Element[]);
+
+  return <ul className="breadcrumb">{res}</ul>;
+};
+
+export default memo(TestCrumbCopy);
