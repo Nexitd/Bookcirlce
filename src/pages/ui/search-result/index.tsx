@@ -60,7 +60,6 @@ const SearcResult = () => {
       {!!resData.length && (
         <div className="search__content">
           {resData.map((el: any) => {
-            console.log(renderCard(el));
             return renderCard(el);
           })}
         </div>

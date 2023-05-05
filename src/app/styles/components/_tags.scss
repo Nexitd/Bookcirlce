@@ -30,3 +30,10 @@
 .notification__active {
   background-color: $gray;
 }
+
+.filter-active {
+  background: $orange !important;
+  span {
+    color: white;
+  }
+}

@@ -1,16 +1,24 @@
 import { ReactNode } from "react";
-import cn from 'classnames';
+import cn from "classnames";
 
 type ColorableTagPropsType = {
-    text: string;
-    icon?: ReactNode;
-    className?: string;
-}
+  text: string;
+  icon?: ReactNode;
+  className?: string;
+  onClick?: () => void;
+};
 
-const ColorableTag = ({ text = '', icon = <></>, className = '' }: ColorableTagPropsType) => {
-    return <div className={cn("color__container", className)} >
-        {icon} <span className="color__container_text" > {text}</span>
-    </div >
-}
+const ColorableTag = ({
+  text = "",
+  icon = <></>,
+  className = "",
+  onClick,
+}: ColorableTagPropsType) => {
+  return (
+    <div className={cn("color__container", className)} onClick={onClick}>
+      {icon} <span className="color__container_text"> {text}</span>
+    </div>
+  );
+};
 
-export default ColorableTag
+export default ColorableTag;

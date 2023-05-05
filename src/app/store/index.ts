@@ -3,15 +3,15 @@ import {
   ThunkAction,
   combineReducers,
   configureStore,
-} from '@reduxjs/toolkit';
-import { AuthModel } from 'entites/auth';
-import { BookModel } from 'entites/books';
-import { BooksClubsModel } from 'entites/books-club';
-import { DiscussionModel } from 'entites/discussion';
-import { MeetModel } from 'entites/meets';
-import { NotificationModel } from 'entites/notification';
-import { PolModel } from 'entites/pols';
-import { StreamModel } from 'entites/stream';
+} from "@reduxjs/toolkit";
+import { AuthModel } from "entites/auth";
+import { BookModel } from "entites/books";
+import { BooksClubsModel } from "entites/books-club";
+import { DiscussionModel } from "entites/discussion";
+import { MeetModel } from "entites/meets";
+import { NotificationModel } from "entites/notification";
+import { PolModel } from "entites/pols";
+import { StreamModel } from "entites/stream";
 
 const rootReducer = combineReducers({
   auth: AuthModel.authSlice.reducer,
@@ -21,7 +21,8 @@ const rootReducer = combineReducers({
   stream: StreamModel.streamSlice.reducer,
   book: BookModel.bookSlice.reducer,
   discussion: DiscussionModel.discussionSlice.reducer,
-  pol: PolModel.PolSlice.reducer
+  pol: PolModel.PolSlice.reducer,
+  filter: BookModel.filterSlice.reducer,
 });
 
 export const store = configureStore({

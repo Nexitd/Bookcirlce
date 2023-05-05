@@ -1,1 +1,2 @@
-export * from "./bookSlice"
+export * from "./bookSlice";
+export * from "./flterSlice";

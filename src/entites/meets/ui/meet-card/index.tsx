@@ -14,7 +14,7 @@ export const MeetCard: FC<IMeetCard> = ({ data, onClick }) => {
     const userIncludes = useMemo(() => {
         const validMeet = data.members.filter(elem => elem.id === currentUser.id);
 
-        console.log(validMeet);
+        // console.log(validMeet);
 
         return Boolean(validMeet.length)
     }, [data.members.length])
