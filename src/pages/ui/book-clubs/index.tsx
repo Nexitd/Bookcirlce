@@ -1,3 +1,4 @@
+import { BookTags } from "entites/books";
 import { BooksCharacteristics, BooksClubItem } from "entites/books-club";
 import { SearchBook } from "features/search";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +14,10 @@ const BookClubs = () => {
     <div className="wrapper__container">
       <div className="club">
         <SearchBook placeholder="Поиск книжных клубов" onSearch={onSearch} />
-        <BooksCharacteristics title="Поиск по категориям" />
+        {/* <BooksCharacteristics title="Поиск по категориям" /> */}
+
+        <BookTags title={"Поиск по категориям"} type={"club"} />
+
         <BooksClubItem title="Популярные клубы" />
         <BooksClubItem title="Новые клубы" />
       </div>

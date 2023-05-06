@@ -1,17 +1,28 @@
 import { memo } from "react";
 import { useAppDispatch, useAppSelector } from "shared/api";
-import { BookCategory, BookGenre } from "shared/types";
+import {
+  BookCategory,
+  BookGenre,
+  BookClubCategoriesTypeDefinition,
+} from "shared/types";
 import { ColorableTag } from "shared/ui";
 import { SlickSlider } from "widgets/slider";
 import { changeFilter } from "entites/books/model";
 
 export const BookTags = memo(
-  ({ title, type }: { title: string; type: "genre" | "category" }) => {
-    const data = type === "genre" ? BookGenre : BookCategory;
+  ({ title, type }: { title: string; type: "genre" | "category" | "club" }) => {
+    const { filterTags } = useAppSelector((state) => state.filter);
+    // const { categories } = useAppSelector((state) => state.books_club);
+    const data =
+      type === "genre"
+        ? BookGenre
+        : "category"
+        ? BookCategory
+        : BookClubCategoriesTypeDefinition;
 
     const dispatch = useAppDispatch();
 
-    const { filterTags } = useAppSelector((state) => state.filter);
+    // console.log(BookGenre, BookClubCategoriesTypeDefinition, "type");
 
     return (
       <div className="book__row">
