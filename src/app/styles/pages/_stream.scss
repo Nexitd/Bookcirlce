@@ -137,6 +137,8 @@
     &_avatar {
       border: 3px solid $orange;
       border-radius: 50%;
+      width: 70px;
+      height: auto;
 
       img {
         width: 70px;
@@ -146,11 +148,21 @@
     }
 
     &_avatars {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.25em;
+      width: 100%;
+      position: relative;
+
+      .slider {
+        width: 100%;
+      }
+
+      .slick-list {
+        margin: 0 auto;
+        width: 400px;
+        .slick-track {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
     }
 
     &_item {

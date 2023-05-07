@@ -5,24 +5,43 @@ import { SlickSlider } from "widgets/slider";
 import { BookCard } from "../book-card";
 
 export const BookRow = memo(({ title }: { title: string }) => {
-    // берем данные для карточек
-    const { book_cards } = useAppSelector(state => state.book)
-    // функция для редиректов
-    const navigate = useNavigate()
+  const { book_cards } = useAppSelector((state) => state.book);
+  const { filterTags } = useAppSelector((state) => state.filter);
+  const navigate = useNavigate();
 
+  const handleClick = useCallback(
+    (id: number) => {
+      navigate(`/books/${id}`);
+    },
+    [navigate]
+  );
 
-    // при вызове пееремещаем пользователя на страницу книги
-    const handleClick = useCallback((id: number) => {
-        navigate(`/books/${id}`)
-    }, [navigate])
+  const resBooks = book_cards.filter((el) => {
+    const validData = el.book_tags.filter((elem) => filterTags.includes(elem));
 
-    return <div className="book__row">
-        <h2 className="book__row_title">{title}</h2>
+    if (validData.length !== 0) return el;
+  });
 
-        <SlickSlider slidesToShow={3}>
-            {book_cards.map(el => (
-                <BookCard data={el} key={el.id} onClick={() => handleClick(el.id)} />
-            ))}
-        </SlickSlider>
+  const dataType = !!resBooks.length ? resBooks : book_cards;
+
+  const slidesToShow = () => {
+    if (dataType.length === 1) {
+      return 1;
+    } else if (dataType.length === 2) {
+      return 2;
+    }
+    return 3;
+  };
+
+  return (
+    <div className="book__row">
+      <h2 className="book__row_title">{title}</h2>
+
+      <SlickSlider slidesToShow={slidesToShow()}>
+        {dataType.map((el) => (
+          <BookCard data={el} key={el.id} onClick={() => handleClick(el.id)} />
+        ))}
+      </SlickSlider>
     </div>
-})
+  );
+});

@@ -1,11 +1,11 @@
 import { useCallback, useState } from "react";
 import { Field, Form, Formik } from "formik";
 import moment from "moment";
-import { useAppSelector } from "shared/api";
+import { useAppDispatch, useAppSelector } from "shared/api";
 import { Button, Modal } from "shared/ui";
 import { SettingsFormModal } from "../settings-form-modal/index";
 import { useNavigate } from "react-router-dom";
-
+import { AuthModel } from "entites/auth";
 
 
 export const SettingsForm = () => {
@@ -19,8 +19,14 @@ export const SettingsForm = () => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   // тип модалки
   const [modalType, setModalType] = useState<"password" | "delete">("delete");
+  // диспетчер из редакса
+  const dispatch = useAppDispatch()
 
-  const handleSubmit = () => { };
+  const handleSubmit = (values: any) => {
+
+
+    dispatch(AuthModel.changeSettings(values))
+  };
 
   // изменение видимости модалки
   const showModal = useCallback(
@@ -182,7 +188,7 @@ export const SettingsForm = () => {
                 text="Отменить"
                 className="control__btn control__cancel"
               />
-              <Button text="Сохранить" className="control__btn" />
+              <Button type="submit" text="Сохранить" className="control__btn" />
             </div>
           </div>
         </Form>

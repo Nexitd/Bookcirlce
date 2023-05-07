@@ -1,9 +1,10 @@
 import { FC, useMemo } from "react"
+import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment"
+import { StreamModel } from "entites/stream";
 import { Button, ColorableTag } from "shared/ui"
 import { ACCOUNT_TYPE, MeetType } from "shared/types"
-import { useAppSelector } from "shared/api";
-import { useNavigate, useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "shared/api";
 
 interface IMeetCard {
     data: MeetType;
@@ -23,6 +24,8 @@ export const MeetCard: FC<IMeetCard> = ({ data, onClick }) => {
 
         return Boolean(validMeet.length)
     }, [data.members.length])
+
+    const dispatch = useAppDispatch()
 
     return <div className="meet__card">
         <h2 className="meet__card_title">{data.title}</h2>
@@ -57,6 +60,10 @@ export const MeetCard: FC<IMeetCard> = ({ data, onClick }) => {
             <Button text={userIncludes ? "Отменить участие" : "Принять участие"} className="meet__card_btn meet__card_btn-ghost" onClick={() => onClick(data.id)} />
         }
         {/* если модер показываем эту кнопку */}
-        {ACCOUNT_TYPE[currentUser.role] === 'moder' && <Button text='Редактировать' className="meet__card_btn" onClick={() => navigate(`/edit-meet?club_id=${id}&meet_id=${data.id}`)} />}
+        {ACCOUNT_TYPE[currentUser.role] === 'moder' && <div className="meet__card_btns">
+
+            <Button text='Начать встречу' className="meet__card_btn meet__card_btn-ghost" onClick={() => dispatch(StreamModel.changeStreamOnlineStatus())} />
+            <Button text='Редактировать' className="meet__card_btn" onClick={() => navigate(`/edit-meet?club_id=${id}&meet_id=${data.id}`)} />
+        </div>}
     </div>
 }

@@ -9,6 +9,12 @@
   display: flex;
   flex-direction: column;
 
+  &_btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   &_tag {
     margin-bottom: 1em;
 

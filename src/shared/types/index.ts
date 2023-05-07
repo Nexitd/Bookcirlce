@@ -53,6 +53,7 @@ export type NotificationType = {
   club: string;
   notification_type: string;
   notification_category: 'new_user' | 'broadcast' | 'survey';
+  message_type: string;
 };
 
 // Meet Types

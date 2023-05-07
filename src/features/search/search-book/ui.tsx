@@ -1,30 +1,17 @@
-import { BookCard } from "entites/books";
-import { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { BookCardType } from "shared/types";
+import { useState } from "react";
+
 import { Button } from "shared/ui";
 
 type SearchBookPropsType = {
   onSearch: (str: string) => void;
   placeholder: string;
-  data: BookCardType[];
 };
 
 export const SearchBook = ({
-  data,
   onSearch,
   placeholder = "Поиск книжных клубов",
 }: SearchBookPropsType) => {
   const [searchValue, setSearchValue] = useState<string>("");
-
-  const navigate = useNavigate();
-
-  const handleClick = useCallback(
-    (id: number) => {
-      navigate(`/books/${id}`);
-    },
-    [navigate]
-  );
 
   return (
     <div className="search">
@@ -61,13 +48,6 @@ export const SearchBook = ({
 
         <Button text="Найти" type="submit" className="search__form_btn" />
       </form>
-      {!!data.length && (
-        <div className="search__content">
-          {data.map((el) => {
-            return <BookCard data={el} onClick={handleClick} />;
-          })}
-        </div>
-      )}
     </div>
   );
 };

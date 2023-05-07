@@ -16,7 +16,7 @@ const Sidebar = () => {
     const { pathname } = useLocation();
 
     // isAuth - флаг проверяющий авторизова юзер или нет
-    const { isAuth } = useAppSelector(state => state.auth)
+    const { isAuth, currentUser } = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch()
 
     const handleClick = useCallback((link: string) => {
@@ -36,7 +36,7 @@ const Sidebar = () => {
         </div>
         <div className="sidebar__footer">
             {isAuth ?
-                <Collapse className="sidebar__collapse" img={person} isImage={true} title="Иван Иванов" arrow={<svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <Collapse className="sidebar__collapse" img={person} isImage={true} title={`${currentUser.name} ${currentUser.surname}`} arrow={<svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6.628 9.0858C6.82667 9.30701 7.17333 9.30701 7.372 9.08579L12.3131 3.58409C12.6022 3.26221 12.3737 2.75 11.9411 2.75H2.05892C1.62628 2.75 1.39784 3.26221 1.68692 3.58409L6.628 9.0858Z" fill="#222222" />
                 </svg>
                 }>

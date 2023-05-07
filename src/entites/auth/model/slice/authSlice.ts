@@ -58,14 +58,15 @@ export const authSlice = createSlice({
       },
     ],
     currentUser: {
-      id: 2,
+      id: 1,
       name: 'Иван',
-      surname: 'Артемов',
+      surname: 'Иванов',
       sex: 'мужской',
-      password: '123456',
-      email: 'test2@gmail.com',
+      password: '12345',
+      email: 'test@gmail.com',
+      avatar: avatar,
       birth_date: new Date().toUTCString(),
-      role: 2,
+      role: 1,
     },
     isError: false,
     isSuccess: false,
@@ -169,6 +170,31 @@ export const authSlice = createSlice({
     ) => {
       state.choosedModel = payload;
     },
+
+    changeSettings: (state, { payload }: PayloadAction<UserFullInfoType>) => {
+      console.log(payload);
+
+      state.users = state.users.map((el) => {
+        if (el.id === payload.id) {
+          el.surname = payload.surname;
+          el.name = payload.name;
+          el.sex = payload.sex;
+          el.birth_date = payload.birth_date;
+          el.email = payload.email;
+        }
+
+        return el;
+      });
+
+      state.currentUser = {
+        ...state.currentUser,
+        sex: payload.sex,
+        email: payload.email,
+        name: payload.name,
+        surname: payload.surname,
+        birth_date: payload.birth_date,
+      };
+    },
   },
 });
 
@@ -182,6 +208,7 @@ export const {
   changeUserModel,
   deleteUser,
   changeUserPassword,
+  changeSettings,
 } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -1,36 +1,24 @@
-import { BookRow, BookTags } from "entites/books";
+import { useNavigate } from "react-router-dom";
 import { SearchBook } from "features/search";
-import { useAppSelector } from "shared/api";
-import { useState } from "react";
-import { BookCardType } from "shared/types";
+import { BookRow, BookTags } from "entites/books";
 
 // страница с Книгами
 const Books = () => {
-    const { book_cards } = useAppSelector((state) => state.book);
+  const navigate = useNavigate();
 
-    const [books, setBooks] = useState([] as BookCardType[]);
+  const onSearch = (e: string) => {
+    navigate(`/search-result?title=${e}&type=books`);
+  };
 
-    const onSearch = (e: string) => {
-
-        const testFoo = book_cards.filter((el) => {
-            return (
-                e.trim() !== "" &&
-                el.title.toLocaleLowerCase().includes(e.toLocaleLowerCase())
-
-            );
-        });
-        setBooks(testFoo);
-    };
-
-    return (
-        <div className="book wrapper__container">
-            <SearchBook placeholder="Поиск книг" onSearch={onSearch} data={books} />
-            <BookTags title="Поиск по категориям" type="category" />
-            <BookTags title="Поиск по жанрам" type="genre" />
-            <BookRow title="Популярные книги" />
-            <BookRow title="новинки" />
-        </div>
-    );
+  return (
+    <div className="book wrapper__container">
+      <SearchBook placeholder="Поиск книг" onSearch={onSearch} />
+      <BookTags title="Поиск по категориям" type="category" />
+      <BookTags title="Поиск по жанрам" type="genre" />
+      <BookRow title="Популярные книги" />
+      <BookRow title="новинки" />
+    </div>
+  );
 };
 
 export default Books;

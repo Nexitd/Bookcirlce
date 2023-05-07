@@ -2,6 +2,7 @@ import { FC } from "react"
 import moment from "moment"
 import { Button } from "shared/ui"
 import { NotificationType } from "shared/types"
+import { useNavigate } from "react-router-dom"
 
 type NotificationCardType = {
     data: NotificationType
@@ -9,7 +10,26 @@ type NotificationCardType = {
     onClick: (id: number) => void;
 }
 
+const btnText: any = {
+    'pol': "Перейти",
+    'meet': 'Присоединиться'
+}
+
+
+
 export const NotificationCard: FC<NotificationCardType> = ({ data, role, onClick }) => {
+    const navigate = useNavigate();
+
+    const clickFunction = () => {
+        if (data.message_type === 'pol') {
+            navigate('/my-clubs/1');
+
+            return
+        }
+
+        navigate('/stream')
+    }
+
     return <div className="notification__card">
         <div className="notification__card_head">
             <p className="notification__card_title">{data.title}</p>
@@ -30,7 +50,7 @@ export const NotificationCard: FC<NotificationCardType> = ({ data, role, onClick
         </div>
         <div className="notification__card_footer">
             <Button text="Скрыть" className="notification__card_btn" onClick={() => onClick(data.id)} />
-            {role === "moder" && <Button text="Присоедениться" className="notification__card_connect" />}
+            {role !== "moder" && data.message_type !== '' && <Button onClick={clickFunction} text={btnText[data.message_type]} className="notification__card_connect" />}
         </div>
     </div>
 }

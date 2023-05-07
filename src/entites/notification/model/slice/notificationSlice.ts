@@ -20,6 +20,7 @@ export const notificationSlice = createSlice({
         date: new Date(),
         notification_type: 'new',
         notification_category: 'new_user',
+        message_type: '',
       },
       {
         id: 2,
@@ -30,6 +31,7 @@ export const notificationSlice = createSlice({
         date: new Date(),
         notification_type: 'old',
         notification_category: 'new_user',
+        message_type: 'meet',
       },
       {
         id: 3,
@@ -40,6 +42,7 @@ export const notificationSlice = createSlice({
         date: new Date(),
         notification_type: 'old',
         notification_category: 'new_user',
+        message_type: 'pol',
       },
       {
         id: 4,
@@ -50,6 +53,7 @@ export const notificationSlice = createSlice({
         date: new Date(),
         notification_type: 'new',
         notification_category: 'new_user',
+        message_type: 'pol',
       },
       {
         id: 5,
@@ -60,56 +64,7 @@ export const notificationSlice = createSlice({
         date: new Date(),
         notification_type: 'new',
         notification_category: 'new_user',
-      },
-      {
-        id: 6,
-        title: 'Участник клуба проголосовал в sdfdsfds',
-        club: 'DesignBook',
-        description:
-          'Александр Александров проголосовал в опросе “Выбираем дату следующей встречи”',
-        date: new Date(),
-        notification_type: 'new',
-        notification_category: 'new_user',
-      },
-      {
-        id: 7,
-        title: 'Участник клуба dfgdfgdfbdfvd в опросе',
-        club: 'DesignBook',
-        description:
-          'Александр Александров проголосовал в опросе “Выбираем дату следующей встречи”',
-        date: new Date(),
-        notification_type: 'new',
-        notification_category: 'new_user',
-      },
-      {
-        id: 8,
-        title: 'Участник клуба sdvsdvsdv в опросе',
-        club: 'DesignBook',
-        description:
-          'Александр Александров проголосовал в опросе “Выбираем дату следующей встречи”',
-        date: new Date(),
-        notification_type: 'new',
-        notification_category: 'new_user',
-      },
-      {
-        id: 9,
-        title: 'Участник клуба проголосовал в опросе',
-        club: 'DesignBook',
-        description:
-          'Александр Александров проголосовал в опросе “Выбираем дату следующей встречи”',
-        date: new Date(),
-        notification_type: 'old',
-        notification_category: 'new_user',
-      },
-      {
-        id: 10,
-        title: 'Участник клуба sdfejoiervoer в опросе',
-        club: 'DesignBook',
-        description:
-          'Александр Александров проголосовал в опросе “Выбираем дату следующей встречи”',
-        date: new Date(),
-        notification_type: 'new',
-        notification_category: 'new_user',
+        message_type: 'pol',
       },
     ],
     filtered_notifications: [],
@@ -125,10 +80,7 @@ export const notificationSlice = createSlice({
 
     // изменение типа с нового на просмотренный и наоборот
 
-    changeNotificationType: (
-      state,
-      { payload }: PayloadAction<string>
-    ) => {
+    changeNotificationType: (state, { payload }: PayloadAction<string>) => {
       // в массив отфильтрованных уведомлений возвращаем только те, у которых тип равен тому
       // что пришел
       state.filtered_notifications = state.notifications.filter(

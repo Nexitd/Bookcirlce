@@ -1,19 +1,44 @@
 import { memo } from "react";
-import { BookCategory, BookGenre } from "shared/types";
-import { ColorableTag } from "shared/ui";
+import { useAppDispatch, useAppSelector } from "shared/api";
 import { SlickSlider } from "widgets/slider";
+import { BookModel } from "entites/books";
+import { ColorableTag } from "shared/ui";
+import {
+    BookCategory,
+    BookGenre,
+    BookClubCategoriesTypeDefinition,
+} from "shared/types";
 
-export const BookTags = memo(({ title, type }: { title: string, type: "genre" | "category" }) => {
-    // определяем набор данных
-    const data = type === "genre" ? BookGenre : BookCategory
+export const BookTags = memo(
+    ({ title, type }: { title: string; type: "genre" | "category" | "club" }) => {
+        const { filterTags } = useAppSelector((state) => state.filter);
 
-    return <div className="book__row">
-        <h2 className="book__row_title">{title}</h2>
+        const data =
+            type === "genre"
+                ? BookGenre
+                : "category"
+                    ? BookCategory
+                    : BookClubCategoriesTypeDefinition;
 
-        <SlickSlider slidesToShow={5.5} variableWidth>
-            {Object.values(data).map((value, index) => (
-                <ColorableTag text={value} key={index} />
-            ))}
-        </SlickSlider>
-    </div>
-})
+        const dispatch = useAppDispatch();
+
+
+        return (
+            <div className="book__row">
+                <h2 className="book__row_title">{title}</h2>
+                <SlickSlider slidesToShow={5.5} variableWidth>
+                    {Object.values(data).map((value, index) => {
+                        return (
+                            <ColorableTag
+                                onClick={() => dispatch(BookModel.changeFilter(value))}
+                                text={value}
+                                key={index}
+                                className={filterTags.includes(value) ? "filter-active" : ""}
+                            />
+                        );
+                    })}
+                </SlickSlider>
+            </div>
+        );
+    }
+);
