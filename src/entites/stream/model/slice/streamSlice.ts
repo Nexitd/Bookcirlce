@@ -5,7 +5,7 @@ import avatar from 'assets/images/Ellipse 1.png';
 type initialStateType = {
   stream: StreamType;
 };
-
+// моки
 export const streamSlice = createSlice({
   name: 'stream',
   initialState: {
@@ -68,6 +68,7 @@ export const streamSlice = createSlice({
           message: 'Как у вас дела?? Всем отличного времяпрепровождения',
         },
       ],
+      // учатсники стрима
       members: [
         {
           id: 1,
@@ -124,19 +125,24 @@ export const streamSlice = createSlice({
     },
   } as initialStateType,
   reducers: {
+    // создание сообщения.
     createMessage: (
       state,
       { payload }: PayloadAction<StreamItemMessageType>
     ) => {
+      // Берем последний id сообщения для автоматической генерации
       let lastStreamMessageId =
         state.stream.messages[state.stream.messages.length - 1].id;
 
+      // в массив с сообщениями добавляем наш автоматически сгенерированный id
+      // и структуру сообщения, которая пришла к нам
       state.stream.messages.push({
         id: ++lastStreamMessageId,
         ...payload,
       });
     },
 
+    // меняем статус начал стрима
     changeStreamOnlineStatus: (state) => {
       state.stream.isGoing = !state.stream.isGoing;
     },

@@ -7,6 +7,7 @@ export const BookHero = memo(() => {
     const { books } = useAppSelector(state => state.book)
     const { id } = useParams()
 
+    // берем конкретную книгу
     const currentBook = useMemo(() => books.filter(el => el.id === Number(id))[0], [id])
 
     return <div className="book__hero">

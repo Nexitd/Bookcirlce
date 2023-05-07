@@ -5,10 +5,14 @@ import { Button } from "shared/ui";
 
 
 export const MessagesBar = () => {
+    // сообщение стрима
     const [streamMessage, setStreamMessage] = useState<string>('')
+    // текущий ющер
     const { currentUser } = useAppSelector(state => state.auth);
+    // диспетчер из редакса
     const dispatch = useAppDispatch();
 
+    // создаем новое сообщение
     const onSend = (message: string) => dispatch(StreamModel.createMessage({
         name: currentUser.name,
         surname: currentUser.surname,
@@ -27,6 +31,7 @@ export const MessagesBar = () => {
                 e.preventDefault();
 
                 if (streamMessage.trim() !== '') {
+                    // если сообщение не пустое вызываем функцию создания сообщения
                     onSend(streamMessage);
 
                     setStreamMessage('');
@@ -72,9 +77,12 @@ const MembersIcon = () => <svg width="16" height="16" viewBox="0 0 16 16" fill="
 
 
 export const MembersBar = () => {
+    // стрим и данные стрима
     const { stream } = useAppSelector(state => state.stream);
+    // диспетчер из редакса
     const dispatch = useAppDispatch()
 
+    // завершаем стрим
     const finishStream = () => dispatch(StreamModel.changeStreamOnlineStatus())
 
     return <div className="stream__members">

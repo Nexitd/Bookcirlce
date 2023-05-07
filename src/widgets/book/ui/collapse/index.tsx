@@ -8,6 +8,7 @@ const Arrow = memo(() => <svg width="30" height="30" viewBox="0 0 30 30" fill="n
 </svg>
 )
 
+// часто задаваемые вопросы
 export const BookCollapse = () => {
     return <div className="book__row">
         <h2 className="book__row_title">рекомендации для обсуждения книги</h2>

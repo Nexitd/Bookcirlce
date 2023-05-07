@@ -6,7 +6,9 @@ import { RenderWeekdays } from "../lib/render-weekdays";
 import { RenderDays } from "../lib/render-days";
 
 const CustomCalendar = ({ onClick }: { onClick: (date: Date | string) => void }) => {
+  // дата
   const [date, setDate] = useState(new Date());
+  // текущий день
   const [curr, setCurr] = useState(0)
 
   const prevYear = () => {
@@ -24,6 +26,7 @@ const CustomCalendar = ({ onClick }: { onClick: (date: Date | string) => void })
   const lastDay = days[days.length - 1].getDay();
 
   const handleClick = (day: any) => {
+    // проверка на встречу есть ли в данный день
     onClick(new Date(date.getFullYear(), date.getMonth(), day.getDate()).toUTCString());
     setCurr(day.getDate())
   }

@@ -6,27 +6,42 @@ import { Button, ColorableTag } from "shared/ui";
 import { ACCOUNT_TYPE, FullBookClubInfoType } from "shared/types";
 
 export const BookClubHero = memo(({ data }: { data: FullBookClubInfoType }) => {
+    // берем id клуба
     const { id } = useParams();
+    // функция для редиректа
     const navigate = useNavigate();
+    // конкретный юзер, который сейчас авторизован в системе
     const { currentUser } = useAppSelector(state => state.auth);
+    // нужно для реерендера 
     const [isChanged, setIsChanged] = useState<boolean>(false)
+    // определяем диспетчара из редакса, чтобы можно было вызвать функции(экшены)
     const dispatch = useAppDispatch();
 
-    const editClub = () => navigate('/edit-club')
+    // перекидываем на страницу редактирования клуба
+    const editClub = () => navigate(`/edit-club?club_id=${id}`)
 
+    // проверяем есть ли текущий юзер в клубе. Возвращаем длину массива с итогом поиска юзеров
+    // Эта длина приведена к булевому типу
     const isUserInClub = useMemo(() => {
         const isCurrUser = data.members.filter(el => el.id === currentUser.id);
 
         return Boolean(isCurrUser.length)
     }, [id, isChanged, data]);
 
+    // изменения статуса в клубе/нет
     const changeClubMemberStatus = () => {
+        // ререндер. тут мы заставляем по новой отработать вычесления в переменной isUserInClub
+        // поскольку значение мемоизировано, мы в качестве параметра, за которым следят указали 
+        // флаг ререндера
         setIsChanged(prev => !prev)
         if (isUserInClub) {
+            // если в клубе, вызываем функция лива из клуба и выходим из функции
             dispatch(BooksClubsModel.leaveFromClub({ id: Number(id), user: currentUser }))
 
             return
         }
+
+        // если не в клубее добавляем в клуб
 
         dispatch(BooksClubsModel.connetToClub({ club: data, user: currentUser }));
     }
@@ -37,6 +52,7 @@ export const BookClubHero = memo(({ data }: { data: FullBookClubInfoType }) => {
         <div className="club__hero_item">
             <img src={data.image} alt="club image" />
             <Button text="Копировать ссылку" className="club__hero_btn" onClick={copyClubLink} />
+            {/* если роль мембер рендерим одну кнопку, если модер то другую */}
             {ACCOUNT_TYPE[currentUser.role] === "member" ? <Button className="club__hero_btn" text={isUserInClub ? "Покинуть клуб" : "Вступить в клуб"} onClick={changeClubMemberStatus} /> : <Button text="Редактировать" onClick={editClub} />}
         </div>
         <div className="club__hero_item">

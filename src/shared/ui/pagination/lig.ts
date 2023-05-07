@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 
 export const DOTS = '...';
 
+// создание массива для пагинации
 const range = (start: number, end: number) => {
   let length = end - start + 1;
   return Array.from({ length }, (_, idx) => idx + start);
@@ -20,7 +21,10 @@ export const usePagination = ({
   siblingCount = 1,
   currentPage,
 }: UsePaginationProps) => {
+  // создание пагинации
   const paginationRange = useMemo(() => {
+    // берем общее число страниц (округляем частное от общего количества элементов на количесто элементов на странице)
+    // округление в большую сторону
     const totalPageCount = Math.ceil(totalCount / pageSize);
 
     // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
@@ -51,13 +55,16 @@ export const usePagination = ({
     const firstPageIndex = 1;
     const lastPageIndex = totalPageCount;
 
+    // если нне показываются левые точки и при этом показываются правые
     if (!shouldShowLeftDots && shouldShowRightDots) {
+      //  формируем массив с правым сдвигом
       let leftItemCount = 3 + 2 * siblingCount;
       let leftRange = range(1, leftItemCount);
 
       return [...leftRange, DOTS, totalPageCount];
     }
 
+    // здесь тоже что и в прошлом, только формируем массив с левым сдвигом
     if (shouldShowLeftDots && !shouldShowRightDots) {
       let rightItemCount = 3 + 2 * siblingCount;
       let rightRange = range(
@@ -67,6 +74,7 @@ export const usePagination = ({
       return [firstPageIndex, DOTS, ...rightRange];
     }
 
+    // здесь формируем просто центральный сдвиг
     if (shouldShowLeftDots && shouldShowRightDots) {
       let middleRange = range(leftSiblingIndex, rightSiblingIndex);
       return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];

@@ -4,6 +4,7 @@ import { ColorableTag } from "shared/ui";
 import { SlickSlider } from "widgets/slider";
 
 export const BookTags = memo(({ title, type }: { title: string, type: "genre" | "category" }) => {
+    // определяем набор данных
     const data = type === "genre" ? BookGenre : BookCategory
 
     return <div className="book__row">

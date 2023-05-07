@@ -6,6 +6,20 @@
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 
+    &_btns {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    &_btn {
+      &-ghost {
+        border: 1px solid $orange;
+        color: $orange;
+        background: transparent;
+      }
+    }
+
     &_title {
       font-weight: 700;
       font-size: 1.25rem;

@@ -10,15 +10,20 @@ import { logOut, setModalType } from "entites/auth/model"
 
 
 const Sidebar = () => {
+    // редирект функция
     const navigate = useNavigate();
+    // роут
     const { pathname } = useLocation();
 
+    // isAuth - флаг проверяющий авторизова юзер или нет
     const { isAuth } = useAppSelector(state => state.auth)
     const dispatch = useAppDispatch()
 
     const handleClick = useCallback((link: string) => {
+        // переход по ссылке 
         navigate(link)
 
+        // если нет ссылки === кнопка выхода
         if (!link) dispatch(logOut())
     }, [navigate, dispatch])
 

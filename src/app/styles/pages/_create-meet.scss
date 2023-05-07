@@ -1,0 +1,15 @@
+.create__meet {
+  input[type='radio'] {
+    border: 1px solid $dark-gray;
+
+    &:checked {
+      border: 2px solid $orange;
+    }
+  }
+
+  &_btns {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

@@ -92,7 +92,9 @@ export const authSlice = createSlice({
       }
     },
 
-    // логин
+    // логин. проверяем подходит емейл и пароль. Если всё нормально пропускаем пользователя
+    // дальше в приложение и меням соответствующие флаги, в противной случае
+    // оставляем его неавторизованным
 
     authByUser: (state, { payload }: PayloadAction<UserAuthDataType>) => {
       const currUser = state.users.filter(
@@ -108,6 +110,8 @@ export const authSlice = createSlice({
       }
     },
 
+    // изменение модальных окон (авторизация, регистрация и восстановление пароля)
+
     changeUserModel: (state, { payload }: PayloadAction<UserFullInfoType>) => {
       state.users = state.users.map((el) => {
         if (el.id === payload.id) {
@@ -119,6 +123,8 @@ export const authSlice = createSlice({
 
       state.currentUser = payload;
     },
+
+    // меняем пароль, находим нужного юзера и меняем ему поле с паролем на введенный
 
     changeUserPassword: (
       state,
@@ -135,6 +141,8 @@ export const authSlice = createSlice({
       state.currentUser.password = payload.password;
     },
 
+    // удаляем пользователя
+
     deleteUser: (state, { payload }: PayloadAction<number>) => {
       state.users = state.users.filter((el) => el.id !== payload);
       state.currentUser = {};
@@ -143,6 +151,8 @@ export const authSlice = createSlice({
       state.isError = false;
       state.choosedModel = 'auth';
     },
+
+    // выход из приложения
 
     logOut: (state) => {
       state.isAuth = false;
@@ -161,6 +171,8 @@ export const authSlice = createSlice({
     },
   },
 });
+
+// экспорт функций
 
 export const {
   createNewUser,

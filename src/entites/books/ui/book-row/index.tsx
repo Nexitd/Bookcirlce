@@ -5,9 +5,13 @@ import { SlickSlider } from "widgets/slider";
 import { BookCard } from "../book-card";
 
 export const BookRow = memo(({ title }: { title: string }) => {
+    // берем данные для карточек
     const { book_cards } = useAppSelector(state => state.book)
+    // функция для редиректов
     const navigate = useNavigate()
 
+
+    // при вызове пееремещаем пользователя на страницу книги
     const handleClick = useCallback((id: number) => {
         navigate(`/books/${id}`)
     }, [navigate])

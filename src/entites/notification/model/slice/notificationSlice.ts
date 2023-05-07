@@ -6,9 +6,11 @@ type notificationSliceType = {
   filtered_notifications: NotificationType[];
 };
 
+// исходные данные
 export const notificationSlice = createSlice({
   name: 'notification',
   initialState: {
+    // массив с уведомлениями
     notifications: [
       {
         id: 1,
@@ -113,7 +115,7 @@ export const notificationSlice = createSlice({
     filtered_notifications: [],
   } as notificationSliceType,
   reducers: {
-    // создание уведомления
+    // создание уведомления в массив пушим новую модель уведомления
     createNewNotification: (
       state,
       { payload }: PayloadAction<NotificationType>
@@ -127,12 +129,14 @@ export const notificationSlice = createSlice({
       state,
       { payload }: PayloadAction<string>
     ) => {
+      // в массив отфильтрованных уведомлений возвращаем только те, у которых тип равен тому
+      // что пришел
       state.filtered_notifications = state.notifications.filter(
         (el) => el.notification_type === payload
       );
     },
 
-    // удаление уведомления
+    // удаление уведомления. Удаляем уведомление с конкретным id
 
     removeNotification: (state, { payload }: PayloadAction<number>) => {
       state.filtered_notifications = state.filtered_notifications.filter(
@@ -141,6 +145,8 @@ export const notificationSlice = createSlice({
     },
   },
 });
+
+// экспорт
 
 export const {
   createNewNotification,

@@ -1,4 +1,3 @@
-
 import { useCallback, useState } from "react";
 import { Field, Form, Formik } from "formik";
 import moment from "moment";
@@ -10,19 +9,26 @@ import { useNavigate } from "react-router-dom";
 
 
 export const SettingsForm = () => {
+  // редирект функция
   const navigate = useNavigate();
+  // текущий юзеер
   const { currentUser } = useAppSelector((state) => state.auth);
+  // имя файла 
   const [fileName, setFileName] = useState<string>("");
+  // флаг для отображения модалки
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  // тип модалки
   const [modalType, setModalType] = useState<"password" | "delete">("delete");
 
   const handleSubmit = () => { };
 
+  // изменение видимости модалки
   const showModal = useCallback(
     () => setIsModalVisible((prev) => !prev),
     [isModalVisible]
   );
 
+  // копирование текста
   const btnCopyClick = (str: string) => {
     navigator.clipboard.writeText(str);
   };

@@ -3,6 +3,7 @@ import { Field } from "formik";
 
 
 const Input = () => {
+    // логика с глазиком на инпуте с паролем
     const [isPassVisible, setIsPassVisible] = useState<boolean>(false);
 
     return (<div className="input__container_item">

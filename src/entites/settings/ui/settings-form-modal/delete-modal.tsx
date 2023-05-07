@@ -17,7 +17,9 @@ const DeleteModal = ({ handleClick, showModal }: ModalPropsType) => {
         <Button
           className="modal__footer_btn settings__btn settings__btn_delete"
           onClick={() => {
+            // удаление
             handleClick();
+            // закрытие модалки
             showModal();
           }}
           text="Продолжить"

@@ -6,8 +6,10 @@ import { Registration } from "./registration";
 
 
 export const RenderAuthModals = () => {
+    // тип выбранной модалки
     const { choosedModel } = useAppSelector(state => state.auth)
 
+    // рендерим компонент в зависимости от типа
     const renderModals = useCallback(() => {
         switch (choosedModel) {
             case "auth":

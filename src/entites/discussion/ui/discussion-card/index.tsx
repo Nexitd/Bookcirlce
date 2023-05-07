@@ -1,5 +1,8 @@
+import { BooksClubsModel } from "entites/books-club";
 import moment from "moment";
-import { DiscussionType } from "shared/types"
+import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "shared/api";
+import { ACCOUNT_TYPE, DiscussionType } from "shared/types"
 import { Button, ColorableTag } from "shared/ui";
 
 type DiscussionCardPropsType = {
@@ -9,6 +12,13 @@ type DiscussionCardPropsType = {
 }
 
 export const DiscussionCard = ({ data, onClick = () => { }, isBtn = true }: DiscussionCardPropsType) => {
+    // id страницы клуба
+    const { id } = useParams()
+    // текущий юзер
+    const { currentUser } = useAppSelector(state => state.auth);
+    // диспетчер из редакса
+    const dispatch = useAppDispatch()
+
     return <div className="discussion__card" >
         <h2 className="discussion__card_title">{data.title}</h2>
         <ColorableTag className="discussion__card_tag" icon={<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +47,12 @@ export const DiscussionCard = ({ data, onClick = () => { }, isBtn = true }: Disc
             </div>
 
             {isBtn &&
-                <Button text="Открыть" onClick={() => onClick(data.id)} />
+                <div className="discussion__card_btns">
+                    {ACCOUNT_TYPE[currentUser.role] === "moder" &&
+                        <Button className="discussion__card_btn-ghost" text="Удалить" onClick={() => dispatch(BooksClubsModel.deleteDiscussion({ clubId: Number(id), disId: data.id }))} />
+                    }
+                    <Button text="Открыть" onClick={() => onClick(data.id)} />
+                </div>
             }
         </div>
     </div>

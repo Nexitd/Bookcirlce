@@ -1,14 +1,23 @@
 import { memo } from "react";
 import moment from "moment";
-import { PolType } from "shared/types";
+import { ACCOUNT_TYPE, PolType } from "shared/types";
 import { Button, ColorableTag } from "shared/ui";
 import { Field, Form, Formik } from "formik";
+import { useAppSelector } from "shared/api";
+import { useNavigate, useParams } from "react-router-dom";
 
 type PolCardPropsType = {
     data: PolType;
 }
 
 export const PolCard = memo(({ data }: PolCardPropsType) => {
+    // текущий юзер
+    const { currentUser } = useAppSelector(state => state.auth);
+    // редирект
+    const navigate = useNavigate()
+    // id клуба
+    const { id } = useParams()
+
     return <div className="pol__card">
         <h2 className="pol__card_title">{data.title}</h2>
 
@@ -30,6 +39,7 @@ export const PolCard = memo(({ data }: PolCardPropsType) => {
         <p className="pol__card_text">{data.description}</p>
 
         <div className="pol__card_votes">
+            {/* если опрос завершен рендерим это */}
             {data.isFinished ?
                 <>
                     {data.vote_variants.map(el => (
@@ -44,30 +54,48 @@ export const PolCard = memo(({ data }: PolCardPropsType) => {
                         </div>
                     ))}
                 </> : <>
-                    <Formik initialValues={{
-                        title: ''
-                    }} onSubmit={() => {
+                    {/* иначе это */}
+                    {ACCOUNT_TYPE[currentUser.role] !== 'moder' ?
+                        <Formik initialValues={{
+                            title: ''
+                        }} onSubmit={() => {
 
-                    }}>
-                        <Form>
-                            <div id="pol__container_votes">
-                                <div role="group" aria-labelledby="pol__container_votes">
-                                    {data.vote_variants.map(el => (
-                                        <div key={el.id} className="vote__item_inp vote__item">
-                                            <label className="vote__text-label vote__text">
-                                                <Field type="radio" value={el.title} name={`title`} />
-                                                {el.title}
-                                            </label>
-                                        </div>
-                                    ))}
+                        }}>
+                            <Form>
+                                <div id="pol__container_votes">
+                                    <div role="group" aria-labelledby="pol__container_votes">
+                                        {data.vote_variants.map(el => (
+                                            <div key={el.id} className="vote__item_inp vote__item">
+                                                <label className="vote__text-label vote__text">
+                                                    <Field type="radio" value={el.title} name={`title`} />
+                                                    {el.title}
+                                                </label>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
 
-                            <Button text="Проголосовать" />
-                        </Form>
-                    </Formik>
+                                <Button text="Проголосовать" />
+                            </Form>
+                        </Formik>
+                        :
+                        <>
+                            {data.vote_variants.map(el => (
+                                <div key={el.id} className="vote__item">
+                                    <p className="vote__text">{el.title}</p>
+                                    <div className="vote__container">
+                                        <div className="vote__line">
+                                            <div className="vote__line_item" style={{ width: el.vote_percent + "%" }}></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            ))}
+                        </>}
                 </>
             }
+
+            {ACCOUNT_TYPE[currentUser.role] === 'moder' && <Button text='Редактировать' onClick={() => navigate(`/club/edit-pol?club_id=${id}`)} />}
         </div>
     </div>
 })

@@ -117,7 +117,7 @@ export const sidebarItemsModer: SidebarItemsType[] = [
 ];
 
 
-
+// набор кнопок для сайдбара
 export const sidebarFooterItems: SidebarItemsType[] = [
     {
         id: 1,
@@ -139,12 +139,14 @@ export const sidebarFooterItems: SidebarItemsType[] = [
     }
 ];
 
+// набор ссылок для роли - гость
 export const sidebarItemsGuest = [];
 
 type obj = {
     [key: number]: SidebarItemsType[]
 }
 
+// виды сайдабаров в записимости от роли
 export const validSidebarItemsField: obj = {
     0: sidebarItemsGuest,
     1: sidebarItemsMember,
@@ -153,5 +155,6 @@ export const validSidebarItemsField: obj = {
 
 // Books consts
 
+// блоки для страницы с полной инфой о книге
 export const BooksPulpElements: string[] = ['Издательство МИФ', 'Лабиринт', 'Буквоед', 'Book24', 'ЧитайГород', 'Ozon', 'Wildberries'];
 export const EbookElements: string[] = ['ЛитРес', 'Строки', 'Ozon', 'Bookmate', 'MyBook']

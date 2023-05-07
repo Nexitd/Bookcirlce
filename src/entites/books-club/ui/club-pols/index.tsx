@@ -3,10 +3,11 @@ import { SlickSlider } from "widgets/slider"
 import { PolCard } from "entites/pols"
 import { ACCOUNT_TYPE, FullBookClubInfoType, PolType } from "shared/types"
 import { FilterByTag } from "features/filter"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useAppSelector } from "shared/api"
 import { Button } from "shared/ui"
 
+// фильтры для табов
 const filters = [
     {
         id: 1,
@@ -21,8 +22,13 @@ const filters = [
 ]
 
 export const ClubPols = memo(({ data }: { data: FullBookClubInfoType }) => {
+    // id клуба
+    const { id } = useParams()
+    // функция редиректа
     const navigate = useNavigate();
+    // текущий юзер ситсемы
     const { currentUser } = useAppSelector(state => state.auth)
+    // массив с отфильтрованной датой
     const [filteredData, setFilteredData] = useState<PolType[]>([]);
 
 
@@ -30,14 +36,19 @@ export const ClubPols = memo(({ data }: { data: FullBookClubInfoType }) => {
         let currData: PolType[] = [];
 
         if (type === "old") {
+            // если тип old возвращаем только те опросы, что уже завершились
             currData = data.pols.filter(el => el.isFinished);
         } else {
+            // возвращаем опросы, которые еще не завершились
             currData = data.pols.filter(el => !el.isFinished);
         }
 
+        // наполняем массив
         setFilteredData([...currData]);
     }
 
+
+    // первая работа таба
     useEffect(() => {
         filterData("old");
     }, [])
@@ -48,8 +59,10 @@ export const ClubPols = memo(({ data }: { data: FullBookClubInfoType }) => {
         <h2 className="club__subtitle">опросы</h2>
 
         <div className="club__item_flex">
+            {/* табы */}
             <FilterByTag initialValue="old" values={filters} onClick={filterData} />
-            {ACCOUNT_TYPE[currentUser.role] === 'moder' && <Button onClick={() => navigate("/club/add-pol")} text="Добавить опрос" />}
+            {/* кнопка добавление опроса */}
+            {ACCOUNT_TYPE[currentUser.role] === 'moder' && <Button onClick={() => navigate(`/club/add-pol?club_id=${id}`)} text="Добавить опрос" />}
         </div>
 
         <SlickSlider slidesToShow={filteredData.length <= 1 ? 1 : 2}>

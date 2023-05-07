@@ -5,9 +5,12 @@ import { lazy } from "react";
 import AuthRoute from "./lib/auth-route";
 import StreamRoute from "./lib/stream-route";
 
+// роут с авторизацией
 const Auth = lazy(() => import("pages/ui/auth"));
+// роут со стримом
 const Stream = lazy(() => import('pages/ui/stream'))
 
+// рендер роутов
 export const Routing = () => {
     return (
         <Routes>

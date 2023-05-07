@@ -11,6 +11,7 @@ interface IModal {
 const Modal: FC<IModal> = ({ children, onClick = () => { }, title = '', isOpen = false }) => {
     return (
         <>
+            {/* если модалка видна создаем портал и монтируем эту версту в див с id modal (сам див находится в public/index.html) */}
             {isOpen ? createPortal(
                 <div className="modal__container">
                     <div className="modal">

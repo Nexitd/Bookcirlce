@@ -7,19 +7,27 @@ import { Button } from "shared/ui";
 import { CustomCalendar } from "widgets/calendar";
 
 
+// Страница с календарем
 const Calendar = () => {
+    // мои встречи
     const { myMeet } = useAppSelector(state => state.meets);
+    // текущий юзер
     const { currentUser } = useAppSelector(state => state.auth);
+    // диспетчер из редакса
     const dispatch = useAppDispatch();
+    // редирект функция
     const navigate = useNavigate()
 
+    // редирект на страница создания встречи
     const addMeet = () => navigate('/create-meet')
 
+    // отписка от встречи
     const handleClick = useCallback((id: number) => {
         dispatch(MeetModel.unsubscribeToMeet({ currentUserId: currentUser.id, meetId: id }))
     }, [])
 
 
+    // получение моих встречи и проверка встречи на дату
     const checkDate = useCallback((date: Date | string) => {
         dispatch(MeetModel.getMyMeets(currentUser.id))
         dispatch(MeetModel.getMeetByDate({ date: date, user: currentUser }))

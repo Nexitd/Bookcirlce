@@ -12,6 +12,7 @@ type MeetStateType = {
 export const meetSlice = createSlice({
   name: 'meet',
   initialState: {
+    // просто встречи
     meets: [
       {
         id: 1,
@@ -65,6 +66,7 @@ export const meetSlice = createSlice({
         meeting_type: 'online',
       },
     ],
+    // встречи для календаря
     calendar__meets: [
       {
         id: 1,
@@ -110,15 +112,18 @@ export const meetSlice = createSlice({
     myMeet: [],
   } as MeetStateType,
   reducers: {
-    // отписаться от встречи
+    // отписаться от встречи. Принимаем id текущего юзера и id встречи
     unsubscribeToMeet: (
       state,
       { payload }: PayloadAction<{ currentUserId: number; meetId: number }>
     ) => {
+      // из массива моиВстречи убираем элемент, у которого id равен тому, что пришел
       state.myMeet = state.myMeet.filter((el) => el.id !== payload.meetId);
       state.calendar__meets = [
         ...state.calendar__meets.map((el: any) => {
+          // если id === тому что пришел
           if (el.id === payload.meetId) {
+            // из списка с участниками убираем текущего юзера
             el.members = el.members.filter(
               (elem: any) => elem.id !== payload.currentUserId
             );
@@ -129,6 +134,7 @@ export const meetSlice = createSlice({
       ];
     },
 
+    // подписка на встречу. Принимаем текущего юзера и id встречи
     subscribeToMeet: (
       state,
       {
@@ -136,7 +142,9 @@ export const meetSlice = createSlice({
       }: PayloadAction<{ currentUser: UserFullInfoType; meetId: number }>
     ) => {
       state.meets = state.meets.map((el) => {
+        // если id === тому что пришел
         if (el.id === payload.meetId) {
+          // в массив с участниками добавляем нашего юзера
           el.members.push(payload.currentUser);
         }
 
@@ -154,6 +162,8 @@ export const meetSlice = createSlice({
       });
     },
 
+    // получение встречи. id юзер принимаеем и возвращаем только те встречи, где в массиве
+    // участников находится наш юзер
     getMyMeets: (state, { payload }: PayloadAction<number>) => {
       state.myMeet = state.meets.filter((el) => {
         const usersArr = el.members.filter((elem) => elem.id === payload);
@@ -162,7 +172,7 @@ export const meetSlice = createSlice({
       });
     },
 
-    // получить встречу по дате из календаря
+    // получить встречу по дате из календаря. принимаем дату и юзера
 
     getMeetByDate: (
       state,
@@ -172,10 +182,14 @@ export const meetSlice = createSlice({
     ) => {
       state.myMeet = [
         ...state.calendar__meets.filter((el: MeetType) => {
+          // возвращаем только тех пользователей, которые являются нашим юзером
+          // мы все это делаем в массиве с вчтречами
           const validUsers = el.members.filter(
             (elem) => elem.id === payload.user.id
           );
 
+          // если у нас есть хоть один такой юзер и при этом дата встречи ===
+          // дате пришедшей, то возвращаем элемент
           if (
             validUsers.length !== 0 &&
             moment(el.meeting_date).format('DD.MM.YYYY') ===

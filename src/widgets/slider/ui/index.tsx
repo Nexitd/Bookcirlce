@@ -62,8 +62,10 @@ const SlickSlider = ({
   children,
   isSlice = false,
 }: CustomSliderPropsType) => {
+  // преобразуем children в node array
   const childrenArr = Children.toArray(children);
 
+  // массив с блоками где по три внутри одного (см обсуждения как пример)
   const resArr = useMemo(() => dataSlice(childrenArr, 3), [childrenArr]);
 
   return (

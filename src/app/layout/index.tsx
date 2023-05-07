@@ -6,6 +6,8 @@ import { Sidebar } from "widgets/sidebar";
 const Wrapper: FC<{ children: ReactNode }> = ({ children }) => {
     const { pathname } = useLocation();
 
+    // делаем проверку, если у нас страница со стримом, то просто отображаем ее
+    // без сайдраба и футера
 
     return (
         <>

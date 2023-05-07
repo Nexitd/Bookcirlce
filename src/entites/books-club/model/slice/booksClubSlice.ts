@@ -1831,7 +1831,6 @@ export const booksClubSlice = createSlice({
         message: DiscussionMessageType;
       }>
     ) => {
-
       state.fullBookClubInfo = state.fullBookClubInfo.map((el) => {
         if (el.id === payload.club_id) {
           el.discussions = el.discussions.map((elem) => {
@@ -1848,6 +1847,104 @@ export const booksClubSlice = createSlice({
         return el;
       });
     },
+
+    // создание клуба. В массивы с клубами добавляем новую сущность, которая нам пришла
+    createClub: (
+      state,
+      {
+        payload,
+      }: PayloadAction<
+        Omit<FullBookClubInfoType, 'meetings' | 'pols' | 'discussions'>
+      >
+    ) => {
+      payload.books = [];
+      payload.image = img1;
+
+      payload.id = state.clubs[state.clubs.length - 1].id + 1;
+
+      state.myClubs = [...state.myClubs, payload];
+
+      state.clubs = [...state.clubs, payload];
+
+      state.fullBookClubInfo = [
+        ...state.fullBookClubInfo,
+        {
+          meetings: [],
+          pols: [],
+          discussions: [],
+          ...payload,
+        },
+      ];
+    },
+
+    // удаление обсуждения, передаем id клуба и обсуждения, находим клуб и по id удаляем обсуждение
+
+    deleteDiscussion: (
+      state,
+      { payload }: PayloadAction<{ clubId: number; disId: number }>
+    ) => {
+      state.fullBookClubInfo = state.fullBookClubInfo.map((el) => {
+        if (el.id === payload.clubId) {
+          el.discussions = el.discussions.filter(
+            (elem) => elem.id !== payload.disId
+          );
+        }
+
+        return el;
+      });
+    },
+
+    // удаление клуба. Получаем на вход id клуба, который хотим удалить и после этого
+    // фильтруем абсолютно все клубы и убираем этот клуб отовсюду
+
+    deleteClub: (state, { payload }: PayloadAction<number>) => {
+      state.fullBookClubInfo = state.fullBookClubInfo.filter(
+        (el) => el.id !== payload
+      );
+      state.clubs = state.clubs.filter((el) => el.id !== payload);
+      state.myClubs = state.myClubs.filter((el) => el.id !== payload);
+    },
+
+    // изменение клуба. Находим нужный нам клуб по id и после этого заменяем все поля у
+    // клуба, который уже находится в массиве на те поля, которые мы сами добавили
+
+    editClub: (state, { payload }: PayloadAction<BookClubType>) => {
+      state.fullBookClubInfo = state.fullBookClubInfo.map((el) => {
+        if (el.id === payload.id) {
+          el.description = payload.description;
+          el.category = payload.category;
+          el.title = payload.title;
+          el.meeting_type = payload.meeting_type;
+          el.address = payload.address;
+        }
+
+        return el;
+      });
+
+      state.clubs = state.clubs.map((el) => {
+        if (el.id === payload.id) {
+          el.description = payload.description;
+          el.category = payload.category;
+          el.title = payload.title;
+          el.meeting_type = payload.meeting_type;
+          el.address = payload.address;
+        }
+
+        return el;
+      });
+
+      state.myClubs = state.myClubs.map((el) => {
+        if (el.id === payload.id) {
+          el.description = payload.description;
+          el.category = payload.category;
+          el.title = payload.title;
+          el.meeting_type = payload.meeting_type;
+          el.address = payload.address;
+        }
+
+        return el;
+      });
+    },
   },
 });
 
@@ -1858,6 +1955,10 @@ export const {
   leaveFromClub,
   getFilteredBooks,
   addMessageToDiscuussion,
+  createClub,
+  editClub,
+  deleteClub,
+  deleteDiscussion,
 } = booksClubSlice.actions;
 
 export default booksClubSlice.reducer;

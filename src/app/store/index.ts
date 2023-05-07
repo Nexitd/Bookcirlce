@@ -13,6 +13,8 @@ import { NotificationModel } from 'entites/notification';
 import { PolModel } from 'entites/pols';
 import { StreamModel } from 'entites/stream';
 
+// соединяем все части с моками в один большой объект
+
 const rootReducer = combineReducers({
   auth: AuthModel.authSlice.reducer,
   notification: NotificationModel.notificationSlice.reducer,
@@ -24,6 +26,8 @@ const rootReducer = combineReducers({
   pol: PolModel.PolSlice.reducer
 });
 
+// конфигурируем стор и отключаем сериализацию данных
+
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
@@ -32,7 +36,13 @@ export const store = configureStore({
     }),
 });
 
+// берем тип стейта, чтобы понимать какие там данные
+
 export type RootState = ReturnType<typeof rootReducer>;
+
+// тот же момент, что и со стейтом, только с диспатчем. Чтобы мы могли понимать
+// какие функции у нас есть
+
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,

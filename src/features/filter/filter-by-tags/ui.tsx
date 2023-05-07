@@ -14,9 +14,11 @@ type FilterByTagsPopsType = {
 }
 
 export const FilterByTag = ({ initialValue = '', values, onClick }: FilterByTagsPopsType) => {
+    // определяем изначально выбранный таб
     const [selected, setSelected] = useState<string>(initialValue);
 
     const handleClick = (type: string) => {
+        // вызываем функция смены таба
         onClick(type);
         setSelected(type);
     }
@@ -24,7 +26,7 @@ export const FilterByTag = ({ initialValue = '', values, onClick }: FilterByTags
     return (
         <div className="notification__tags">
             {values.map((el) => (
-                <div key={el.id} className={cn("notification__tags_item", selected === el.name && 'active')} onClick={() => handleClick(el.name)}>
+                <div key={el.id} className={cn("notification__tags_item", selected === el.name && 'notification__active')} onClick={() => handleClick(el.name)}>
                     <span>{el.title}</span>
                 </div>
             ))}

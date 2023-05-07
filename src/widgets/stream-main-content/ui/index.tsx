@@ -17,8 +17,10 @@ const ScreenIcon = () => <svg width="16" height="16" viewBox="0 0 16 16" fill="n
 
 
 const StreamMainContent = () => {
+    // стрим и даннаые
     const { stream } = useAppSelector(state => state.stream);
 
+    // находим модера
     const moder = stream.members.find(el => el.role === 2);
 
     return <div className="stream__main">

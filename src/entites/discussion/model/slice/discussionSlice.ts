@@ -6,6 +6,8 @@ type initialStateType = {
   discussions: DiscussionType[];
 };
 
+// исходные данные
+
 export const discussionSlice = createSlice({
   name: 'discussion',
   initialState: {
@@ -49,10 +51,12 @@ export const discussionSlice = createSlice({
     ],
   } as initialStateType,
   reducers: {
+    // создание нового коммента. Принимаем сам коммент и id 
     createNewComment: (
       state,
       { payload }: PayloadAction<{ message: DiscussionMessageType; id: number }>
     ) => {
+      // находим нужное обсуждение по id и в массив с комментами пушим новый коммент, который пришел
       state.discussions = state.discussions.map((el) => {
         if (el.id === payload.id) {
           el.messages.push(payload.message);

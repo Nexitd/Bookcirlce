@@ -1,8 +1,9 @@
 import { FC, useMemo } from "react"
 import moment from "moment"
 import { Button, ColorableTag } from "shared/ui"
-import { MeetType } from "shared/types"
+import { ACCOUNT_TYPE, MeetType } from "shared/types"
 import { useAppSelector } from "shared/api";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface IMeetCard {
     data: MeetType;
@@ -10,11 +11,15 @@ interface IMeetCard {
 }
 
 export const MeetCard: FC<IMeetCard> = ({ data, onClick }) => {
-    const { currentUser } = useAppSelector(state => state.auth)
+    // текущий юзер
+    const { currentUser } = useAppSelector(state => state.auth);
+    // id клуба 
+    const { id } = useParams()
+    // редирект функция
+    const navigate = useNavigate()
+    // проверяем есть ли пользователь в этой встрече
     const userIncludes = useMemo(() => {
         const validMeet = data.members.filter(elem => elem.id === currentUser.id);
-
-        console.log(validMeet);
 
         return Boolean(validMeet.length)
     }, [data.members.length])
@@ -47,8 +52,11 @@ export const MeetCard: FC<IMeetCard> = ({ data, onClick }) => {
 
         <p className="meet__card_text">{data.description}</p>
 
-        {moment(data.meeting_date).format("DD.MM.YYYY HH:mm") >= moment().format("DD.MM.YYYY HH:mm") &&
-            <Button text={userIncludes ? "Отменить участие" : "Принять участие"} className="meet__card_btn" onClick={() => onClick(data.id)} />
+        {/*  если не модер и даты нормыльные показываем эту кнопку */}
+        {ACCOUNT_TYPE[currentUser.role] !== "moder" && moment(data.meeting_date).format("DD.MM.YYYY HH:mm") >= moment().format("DD.MM.YYYY HH:mm") &&
+            <Button text={userIncludes ? "Отменить участие" : "Принять участие"} className="meet__card_btn meet__card_btn-ghost" onClick={() => onClick(data.id)} />
         }
+        {/* если модер показываем эту кнопку */}
+        {ACCOUNT_TYPE[currentUser.role] === 'moder' && <Button text='Редактировать' className="meet__card_btn" onClick={() => navigate(`/edit-meet?club_id=${id}&meet_id=${data.id}`)} />}
     </div>
 }

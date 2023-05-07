@@ -1,6 +1,7 @@
 import { BooksCharacteristics, BooksClubItem } from "entites/books-club"
 import { SearchBook } from "features/search"
 
+//  страница Клубы
 const BookClubs = () => {
     return <div className="wrapper__container">
         <div className="club">

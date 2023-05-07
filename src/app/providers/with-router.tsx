@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
+// оборачиваем приложение в роутер
 
 export const withRouter = (component: () => React.ReactNode) => () =>
 (

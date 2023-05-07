@@ -2,6 +2,7 @@ import { NotificationModel, NotificationRow } from "entites/notification";
 import { FilterByTag } from "features/filter";
 import { useAppDispatch } from "shared/api";
 
+// фильтры для табов
 const filters = [
     {
         id: 1,
@@ -15,9 +16,12 @@ const filters = [
     }
 ]
 
+// страница с уведомлениями
 const Notifications = () => {
+    // диспетчер из редакса
     const dispatch = useAppDispatch();
 
+    // изменение типа уведомления
     const handleClick = (type: string) => {
         dispatch(NotificationModel.changeNotificationType(type))
     }

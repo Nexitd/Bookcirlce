@@ -15,11 +15,13 @@ export const RenderDays = ({ date, firstDay, days, lastDay, curr, handleClick }:
     const render = useCallback(() => {
         const blanks = [];
         for (let i = 0; i < firstDay; i++) {
+            // рисуем пустые дивы
             blanks.push(<div key={-i} className="blank"></div>);
         }
 
         const monthDays: any = [];
         days.forEach((day: Date) => {
+            // рисуем дни по меяцам
             monthDays.push(
                 <div
                     key={day.getDate()}
@@ -32,6 +34,7 @@ export const RenderDays = ({ date, firstDay, days, lastDay, curr, handleClick }:
             );
         });
 
+        // общее количество дней
         const totalDays = [...blanks, ...monthDays];
 
         const remainingBlanks = [];

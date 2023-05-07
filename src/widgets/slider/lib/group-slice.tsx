@@ -1,3 +1,4 @@
+// это логика для того типа слайдеров, где может скролиться один блок, в котором находится три блока
 export const dataSlice = (arr: any[], chunkSize: number) => {
   const data = [];
 

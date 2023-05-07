@@ -24,14 +24,17 @@ const Pagination = ({ onPageChange,
         pageSize
     });
 
+    // если условие выполнилось пагинации нет
     if (currentPage === 0 || paginationRange.length < 2) {
         return null;
     }
 
+    // стрелочка вперед логика
     const onNext = () => {
         onPageChange(currentPage + 1);
     };
 
+    // стрелочка назад логика
     const onPrevious = () => {
         onPageChange(currentPage - 1);
     };

@@ -1,6 +1,7 @@
 import { MyClubsItem } from "entites/books-club"
 import { SearchBook } from "features/search"
 
+// страница с моими клубами
 const MyClubs = () => {
     const handleSubmit = () => { }
     return (

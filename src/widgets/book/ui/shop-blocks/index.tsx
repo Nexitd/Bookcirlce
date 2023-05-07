@@ -3,6 +3,7 @@ import { BooksPulpElements, EbookElements } from "shared/constants";
 import { Button } from "shared/ui";
 
 export const ShopBlocks = memo(({ type, title }: { type: 'paper' | 'ebook', title: string }) => {
+    // выбираем массив с данными в зависимости от типа
     const data = type === 'paper' ? BooksPulpElements : EbookElements;
 
     return <div className="book__row">

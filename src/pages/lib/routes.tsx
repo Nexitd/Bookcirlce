@@ -1,5 +1,12 @@
 import { lazy } from "react";
 
+// список роутов во всем приложении
+
+// id: id роута
+// path: путь роута (url)
+// element - компонент, который будет рендериться по этому пути
+// roles - список ролей, которые имеют доступ к странице 
+
 export const routes = [
     {
         id: 1,
@@ -66,6 +73,47 @@ export const routes = [
         path: '/clubs/discussion/:id',
         element: lazy(() => import("pages/ui/discussion-page")),
         roles: ['moder', 'member']
-    }
-
+    },
+    {
+        id: 13,
+        path: '/edit-club',
+        element: lazy(() => import('pages/ui/edit-club')),
+        roles: ['moder']
+    },
+    {
+        id: 14,
+        path: '/club/add-book',
+        element: lazy(() => import('pages/ui/create-book')),
+        roles: ['moder']
+    },
+    {
+        id: 14,
+        path: '/club/add-discussion',
+        element: lazy(() => import('pages/ui/create-discussion')),
+        roles: ['moder']
+    },
+    {
+        id: 15,
+        path: '/edit-meet',
+        element: lazy(() => import('pages/ui/edit-meet')),
+        roles: ['moder']
+    },
+    {
+        id: 16,
+        path: '/club/add-meet',
+        element: lazy(() => import('pages/ui/create-meet')),
+        roles: ['moder']
+    },
+    {
+        id: 17,
+        path: '/club/add-pol',
+        element: lazy(() => import('pages/ui/create-pol')),
+        roles: ['moder']
+    },
+    {
+        id: 18,
+        path: '/club/edit-pol',
+        element: lazy(() => import('pages/ui/edit-pol')),
+        roles: ['moder']
+    },
 ]

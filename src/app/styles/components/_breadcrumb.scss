@@ -14,7 +14,17 @@
       color: inherit;
     }
   }
+
   &__separator {
-    color: $orange;
+    display: flex;
+    align-items: center;
+
+    &_last {
+      svg {
+        path {
+          fill: $orange;
+        }
+      }
+    }
   }
 }

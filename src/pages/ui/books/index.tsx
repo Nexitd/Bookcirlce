@@ -1,7 +1,7 @@
 import { BookRow, BookTags } from "entites/books";
 import { SearchBook } from "features/search";
 
-
+// страница Книги
 const Books = () => {
     const onSearch = () => { }
     return <div className="book wrapper__container">
