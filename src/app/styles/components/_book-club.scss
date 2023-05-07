@@ -153,4 +153,13 @@
       }
     }
   }
+  &__content {
+    z-index: 1000000000;
+    position: absolute;
+    display: flex;
+    gap: 1em;
+    margin-top: 1em;
+    background-color: #f0f0f0;
+    padding: 1em;
+  }
 }
